@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan Market - The Heart of Heritage & Trade</title>
+    <meta name="description"
+        content="An immersive, heritage-inspired luxury bazaar landing page for Sultan Market, featuring Mysore-style visual motifs, interactive product stalls, sensory storytelling, and a royal support ledger.">
+    <meta name="theme-color" content="#0e0c0d">
+
+    <!-- Google Fonts for Editorial Typographic Hierarchy -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cinzel: ['"Cinzel Decorative"', 'serif'],
+                        cormorant: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            light: '#f5f0e6',
+                            DEFAULT: '#dfd5c6',
+                            royal: '#d4af37',
+                            bright: '#e5c158',
+                            dark: '#b38f1d',
+                            deep: '#8a6d0f',
+                        },
+                        maroon: {
+                            royal: '#4a0e17',
+                            dark: '#220306',
+                            deep: '#150103'
+                        },
+                        tiger: {
+                            black: '#0e0c0d',
+                            orange: '#e65c00',
+                            burnt: '#993d00'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Custom Variables for Theme Customizer */
+        :root {
+            --theme-primary: #4a0e17;
+            --theme-secondary: #0e0c0d;
+            --theme-accent: #d4af37;
+            --theme-accent-rgb: 212, 175, 55;
+            --theme-bg-gradient: radial-gradient(circle at 50% 50%, #2b050b 0%, #0e0c0d 100%);
+            --scroll-lerp: 0px;
+        }
+
+        /* Gold Shimmer Overlay */
+        .gold-shimmer {
+            background: linear-gradient(90deg,
+                    rgba(212, 175, 55, 0.1) 0%,
+                    rgba(229, 193, 88, 0.4) 50%,
+                    rgba(212, 175, 55, 0.1) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 4s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* Ambient floating lights */
+        .ambient-glow {
+            filter: blur(120px);
+            opacity: 0.22;
+            pointer-events: none;
+            animation: floatGlow 14s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translateY(0px) scale(1);
+                opacity: 0.18;
+            }
+
+            50% {
+                transform: translateY(-40px) scale(1.15);
+                opacity: 0.25;
+            }
+
+            100% {
+                transform: translateY(30px) scale(0.9);
+                opacity: 0.15;
+            }
+        }
+
+        /* Tiger Stripes Shadow Overlay (Slow Ambient Movement) */
+        .tiger-stripe-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 100 100'%3E%3Cpath d='M-10 10 Q20 30 50 10 T110 20 L110 30 Q50 20 20 40 T-10 20 Z M-10 50 Q30 70 60 40 T110 60 L110 70 Q60 50 30 80 T-10 60 Z' fill='%23000000' fill-opacity='0.15'/%3E%3C/svg%3E");
+            background-size: 600px 600px;
+            animation: stripeFlow 45s infinite linear;
+            pointer-events: none;
+            mix-blend-mode: multiply;
+        }
+
+        @keyframes stripeFlow {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        /* Traditional Mysore Onion Arch Silhouette Mask */
+        .mysore-arch {
+            clip-path: polygon(50% 0%, 78% 12%, 100% 38%, 100% 100%, 0% 100%, 0% 38%, 22% 12%);
+        }
+
+        .mysore-arch-border {
+            position: relative;
+        }
+
+        .mysore-arch-border::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--theme-accent);
+            clip-path: polygon(50% 0.5%, 77.5% 12.5%, 99.5% 38.5%, 99.5% 99.5%, 0.5% 99.5%, 0.5% 38.5%, 22.5% 12.5%);
+            pointer-events: none;
+        }
+
+        /* Sovereign heritage dashed borders */
+        .heritage-border {
+            border: 1px solid rgba(var(--theme-accent-rgb), 0.35);
+            outline: 6px solid transparent;
+            position: relative;
+        }
+
+        .heritage-border::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px dashed rgba(var(--theme-accent-rgb), 0.45);
+            pointer-events: none;
+        }
+
+        /* Premium Ornaments */
+        .corner-ornament {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--theme-accent);
+            pointer-events: none;
+        }
+
+        .corner-tl {
+            top: 8px;
+            left: 8px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-tr {
+            top: 8px;
+            right: 8px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-bl {
+            bottom: 8px;
+            left: 8px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-br {
+            bottom: 8px;
+            right: 8px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* Scroll Progress Route Line */
+        #route-indicator-filled {
+            transition: height 0.1s ease-out;
+        }
+
+        /* Advanced Intersection Reveal Animations */
+        .reveal-gate {
+            opacity: 0;
+            transform: scaleY(0.9) translateY(40px);
+            transform-origin: bottom center;
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-gate.active {
+            opacity: 1;
+            transform: scaleY(1) translateY(0);
+        }
+
+        .reveal-stamp {
+            opacity: 0;
+            transform: scale(1.6) rotate(-15deg);
+            transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .reveal-stamp.active {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* Headings Character Split Reveal */
+        .split-char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px) rotateX(60deg);
+            filter: blur(4px);
+            transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), filter 1.1s ease;
+        }
+
+        .active .split-char {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+            filter: blur(0px);
+        }
+
+        /* Traditional Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0e0c0d;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #d4af37 0%, #8a6d0f 100%);
+            border: 2px solid #0e0c0d;
+            border-radius: 5px;
+        }
+
+        /* Silk pattern shimmer weave */
+        .silk-sheen {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.01) 25%, transparent 25%),
+                linear-gradient(225deg, rgba(255, 255, 255, 0.01) 25%, transparent 25%),
+                linear-gradient(45deg, rgba(255, 255, 255, 0.01) 25%, transparent 25%),
+                linear-gradient(315deg, rgba(255, 255, 255, 0.01) 25%, transparent 25%);
+            background-size: 50px 50px;
+        }
+
+        /* Opening Palace Gate Animations */
+        #intro-portal {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            overflow: hidden;
+            pointer-events: auto;
+            background: transparent;
+            isolation: isolate;
+        }
+
+        /* Keep the overlay itself transparent so the real page is revealed progressively
+           between the doors while they slide open instead of flashing a blank red screen. */
+        #intro-portal.is-opening {
+            pointer-events: none;
+            background: transparent !important;
+        }
+
+        /* Fully remove the intro overlay after the gate opens.
+           The ID selector above is stronger than Tailwind's .hidden class, so without
+           this override the empty red overlay can remain on top of the whole page. */
+        #intro-portal.hidden,
+        #intro-portal[hidden],
+        #intro-portal.is-closed {
+            display: none !important;
+            pointer-events: none !important;
+            visibility: hidden !important;
+        }
+
+        #intro-gate-left,
+        #intro-gate-right {
+            position: relative;
+            flex: 0 0 50%;
+            width: 50%;
+            height: 100%;
+            min-width: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: #220306;
+            box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.28);
+            transition: transform 1.6s cubic-bezier(0.77, 0, 0.175, 1);
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        #intro-gate-left {
+            justify-content: flex-start;
+            border-right: 1px solid rgba(var(--theme-accent-rgb), 0.3);
+        }
+
+        #intro-gate-right {
+            justify-content: flex-end;
+            border-left: 1px solid rgba(var(--theme-accent-rgb), 0.3);
+        }
+
+        /* Clean opening layout: keep the side labels away from the center seal. */
+        #intro-gate-left .intro-gate-copy,
+        #intro-gate-right .intro-gate-copy {
+            position: absolute;
+            top: 50%;
+            z-index: 4;
+            width: max-content;
+            max-width: 18rem;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        #intro-gate-left .intro-gate-copy {
+            left: clamp(2rem, 9vw, 9rem);
+        }
+
+        #intro-gate-right .intro-gate-copy {
+            right: clamp(2rem, 9vw, 9rem);
+        }
+
+        #intro-center-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: clamp(8.5rem, 13vw, 11rem);
+            height: clamp(8.5rem, 13vw, 11rem);
+            z-index: 20;
+            border-radius: 9999px;
+            background: #000;
+            border: 4px solid var(--theme-accent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(var(--theme-accent-rgb), 0.4);
+            transition: transform 1.05s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.65s ease;
+            will-change: transform, opacity;
+        }
+
+        #intro-center-seal svg {
+            width: clamp(4.25rem, 6vw, 5rem);
+            height: clamp(4.25rem, 6vw, 5rem);
+        }
+
+        @media (max-width: 900px) {
+
+            #intro-gate-left .intro-gate-copy,
+            #intro-gate-right .intro-gate-copy {
+                display: none;
+            }
+
+            #intro-center-seal {
+                width: 8.5rem;
+                height: 8.5rem;
+            }
+        }
+
+        /* Tiger Eye glint pulse */
+        @keyframes eyeGlint {
+
+            0%,
+            90%,
+            100% {
+                opacity: 0.1;
+            }
+
+            95% {
+                opacity: 1;
+                filter: drop-shadow(0 0 8px rgba(255, 92, 0, 0.9));
+            }
+        }
+
+        .tiger-eye-glint {
+            animation: eyeGlint 6s infinite;
+        }
+
+        /* Smooth curtain style lifts for cards */
+        .stall-curtain {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .bazaar-stall:hover .stall-curtain {
+            transform: translateY(-100%);
+        }
+
+        /* Responsive custom rules */
+        @media (prefers-reduced-motion: reduce) {
+
+            .reveal-gate,
+            .reveal-stamp,
+            .split-char {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+                filter: none !important;
+            }
+
+            .ambient-glow,
+            .tiger-stripe-overlay,
+            .tiger-eye-glint {
+                animation: none !important;
+            }
+        }
+
+
+        /* Improvised polish: missing utility fallbacks + stronger interaction states */
+        .hover-gold-glow:hover,
+        .hover-gold-glow:focus-visible {
+            box-shadow: 0 0 0 1px rgba(var(--theme-accent-rgb), 0.45),
+                0 0 28px rgba(var(--theme-accent-rgb), 0.26),
+                inset 0 0 16px rgba(var(--theme-accent-rgb), 0.08);
+        }
+
+        .spin-mandala {
+            animation: spinMandala 70s linear infinite;
+            transform-origin: center;
+        }
+
+        @keyframes spinMandala {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Tailwind CDN will not create custom decimal scale classes used below. */
+        .py-4\.5 {
+            padding-top: 1.125rem;
+            padding-bottom: 1.125rem;
+        }
+
+        .hover\:scale-115:hover,
+        .hover\:scale-115:focus-visible {
+            transform: scale(1.15);
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--theme-accent);
+            outline-offset: 4px;
+            border-radius: 0.75rem;
+        }
+
+        .glass-ledger {
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01)),
+                rgba(5, 5, 5, 0.86);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+        }
+
+        .royal-noise::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.06;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.45) 1px, transparent 0);
+            background-size: 18px 18px;
+            mix-blend-mode: screen;
+        }
+
+        .intro-seal-button {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .intro-seal-button:hover,
+        .intro-seal-button:focus-visible {
+            box-shadow: 0 0 0 6px rgba(var(--theme-accent-rgb), 0.08),
+                0 0 60px rgba(var(--theme-accent-rgb), 0.5);
+        }
+
+        /* --- Custom Premium Cursor Layout & States --- */
+        .royal-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate3d(-100px, -100px, 0);
+            will-change: transform;
+        }
+
+        .royal-cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate3d(-100px, -100px, 0);
+            will-change: transform, width, height, border-radius;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid var(--theme-accent);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            margin-left: -18px;
+            margin-top: -18px;
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                margin-left 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                margin-top 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        /* Hovering Magnetic element classes */
+        .cursor-btn-hover {
+            width: 54px;
+            height: 54px;
+            margin-left: -27px;
+            margin-top: -27px;
+            background-color: rgba(var(--theme-accent-rgb), 0.08);
+            border-color: var(--theme-accent);
+            box-shadow: 0 0 20px rgba(var(--theme-accent-rgb), 0.35);
+        }
+
+        .cursor-btn-hover .stamp-corners {
+            opacity: 1 !important;
+        }
+
+        /* Hovering Headers/Text class (Underline style reader) */
+        .cursor-text-hover {
+            width: 90px;
+            height: 8px;
+            border-radius: 4px;
+            margin-left: -45px;
+            margin-top: 14px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom-width: 2.5px;
+            border-bottom-color: var(--theme-accent);
+            background-color: rgba(var(--theme-accent-rgb), 0.12);
+            box-shadow: 0 4px 12px rgba(var(--theme-accent-rgb), 0.15);
+        }
+
+        /* Active Section Awareness Themes on the Outer Ring */
+        .cursor-theme-hero {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
+        }
+
+        .cursor-theme-products {
+            border-color: #e65c00;
+            /* Amber/Orange Spice border */
+            box-shadow: 0 0 15px rgba(230, 92, 0, 0.3);
+        }
+
+        .cursor-theme-heritage {
+            border-radius: 4px;
+            /* Turns ring into a square seal */
+            border-color: #990000;
+            /* Crimson tint */
+            box-shadow: 0 0 12px rgba(153, 0, 0, 0.4);
+        }
+
+        .cursor-theme-atmosphere {
+            border-color: var(--theme-accent);
+            box-shadow: 0 0 22px rgba(var(--theme-accent-rgb), 0.5);
+        }
+
+        .cursor-theme-support {
+            border-style: dashed;
+            box-shadow: 0 0 8px rgba(var(--theme-accent-rgb), 0.2);
+        }
+
+        /* 3D preserve perspective layout configuration */
+        .bazaar-stall {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .stall-inner {
+            transform: translateZ(20px);
+            transition: transform 0.1s ease-out;
+        }
+
+        .stall-sheen {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            mix-blend-mode: color-dodge;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 1.5rem;
+        }
+
+        .bazaar-stall:hover .stall-sheen {
+            opacity: 1;
+        }
+
+        /* Accessibility: hide cursor if configured */
+        @media (min-width: 1280px) {
+
+            html:not(.use-default-cursor) body,
+            html:not(.use-default-cursor) a,
+            html:not(.use-default-cursor) button,
+            html:not(.use-default-cursor) select,
+            html:not(.use-default-cursor) input,
+            html:not(.use-default-cursor) textarea,
+            html:not(.use-default-cursor) [role="button"] {
+                cursor: none !important;
+            }
+        }
+
+
+        /* Stability patch: remove jumpy cursor-follow and hover bounce/scale effects. */
+        .stall-inner {
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .stall-sheen {
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.12) 0%, transparent 65%);
+        }
+
+        .hover\:scale-105:hover,
+        .hover\:scale-110:hover,
+        .hover\:scale-115:hover,
+        .hover\:scale-125:hover,
+        .group:hover .group-hover\:scale-105,
+        .group:hover .group-hover\:scale-110,
+        .group:hover .group-hover\:scale-125 {
+            transform: none !important;
+        }
+
+        .bazaar-stall,
+        .sensory-btn,
+        a,
+        button,
+        select,
+        input,
+        textarea,
+        [role="button"],
+        [data-theme-button] {
+            will-change: auto;
+        }
+    </style>
+</head>
+
+<body
+    class="font-sans text-stone-200 min-h-screen relative overflow-x-hidden silk-sheen royal-noise transition-all duration-1000 ease-in-out bg-[#0e0c0d]">
+
+    <noscript>
+        <div class="relative z-50 bg-gold-royal text-black text-center px-4 py-3 font-sans text-sm">
+            This page is most immersive with JavaScript enabled, but the core Sultan Market content remains available
+            below.
+        </div>
+    </noscript>
+
+    <!-- Royal Custom Cursor elements -->
+    <div id="royal-cursor" class="royal-cursor xl:block hidden">
+        <div class="cursor-dot w-2.5 h-2.5 rounded-full bg-gold-royal transition-all duration-300"></div>
+    </div>
+    <div id="royal-cursor-ring" class="royal-cursor-ring xl:flex hidden">
+        <!-- Interlinked corners for royal stamp effect -->
+        <div class="stamp-corners absolute inset-0 opacity-0 transition-opacity duration-300">
+            <span class="absolute top-1 left-1 w-1.5 h-1.5 border-t border-l border-gold-royal"></span>
+            <span class="absolute top-1 right-1 w-1.5 h-1.5 border-t border-r border-gold-royal"></span>
+            <span class="absolute bottom-1 left-1 w-1.5 h-1.5 border-b border-l border-gold-royal"></span>
+            <span class="absolute bottom-1 right-1 w-1.5 h-1.5 border-b border-r border-gold-royal"></span>
+        </div>
+    </div>
+    <!-- Dedicated overlay Canvas specifically for trail + click particles -->
+    <canvas id="cursor-trail-canvas"
+        class="fixed inset-0 w-full h-full pointer-events-none z-[10001] hidden xl:block"></canvas>
+
+    <!-- Ambient Floating Spice Trails Canvas -->
+    <canvas id="bazaar-ambient-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-[1]"></canvas>
+
+    <!-- Ambient Shadow Layers -->
+    <div class="fixed inset-0 tiger-stripe-overlay z-[2]"></div>
+    <div class="absolute top-10 left-10 w-[450px] h-[450px] bg-maroon-royal rounded-full ambient-glow z-[2]"></div>
+    <div class="absolute top-[35%] right-10 w-[400px] h-[400px] bg-tiger-burnt rounded-full ambient-glow z-[2]"
+        style="animation-delay: -4s;"></div>
+    <div class="absolute bottom-20 left-1/4 w-[550px] h-[550px] bg-emerald-900 rounded-full ambient-glow z-[2]"
+        style="animation-delay: -8s;"></div>
+
+    <!-- Intriguing Welcome Portal (Palace Gate Intro Curtain) -->
+    <div id="intro-portal" class="fixed inset-0 z-50 flex overflow-hidden pointer-events-auto">
+        <!-- Left Palace Gate Door -->
+        <div id="intro-gate-left"
+            class="w-1/2 h-full bg-maroon-dark border-r border-gold-royal/30 flex items-center justify-end relative shadow-2xl">
+            <!-- Decorative outline gate designs -->
+            <div class="absolute inset-4 border border-gold-royal/10 pointer-events-none"></div>
+            <!-- Drawing arch path visible on wait -->
+            <svg class="absolute right-0 top-1/2 -translate-y-1/2 h-[75vh] w-auto stroke-current text-gold-royal/20 fill-none"
+                viewBox="0 0 100 200" preserveAspectRatio="none">
+                <path id="arch-left-drawing" d="M 100,200 L 100,120 C 100,70 60,30 60,30 C 60,30 20,10 0,0"
+                    stroke-width="2" stroke-dasharray="1000" stroke-dashoffset="1000"></path>
+            </svg>
+
+            <div class="intro-gate-copy pr-8 text-right z-10 flex flex-col items-end">
+                <h2 class="font-cinzel text-xl text-gold-royal tracking-widest font-bold">ESTABLISHED</h2>
+                <div class="h-[1px] w-12 bg-gold-royal my-2"></div>
+                <p class="font-cormorant text-2xl text-stone-400 italic">1782</p>
+            </div>
+        </div>
+
+        <!-- Right Palace Gate Door -->
+        <div id="intro-gate-right"
+            class="w-1/2 h-full bg-maroon-dark border-l border-gold-royal/30 flex items-center justify-start relative shadow-2xl">
+            <div class="absolute inset-4 border border-gold-royal/10 pointer-events-none"></div>
+            <svg class="absolute left-0 top-1/2 -translate-y-1/2 h-[75vh] w-auto stroke-current text-gold-royal/20 fill-none"
+                viewBox="0 0 100 200" preserveAspectRatio="none">
+                <path id="arch-right-drawing" d="M 0,200 L 0,120 C 0,70 40,30 40,30 C 40,30 80,10 100,0"
+                    stroke-width="2" stroke-dasharray="1000" stroke-dashoffset="1000"></path>
+            </svg>
+
+            <div class="intro-gate-copy pl-8 text-left z-10">
+                <h2 class="font-cinzel text-xl text-gold-royal tracking-widest font-bold">SULTAN</h2>
+                <div class="h-[1px] w-12 bg-gold-royal my-2"></div>
+                <p class="font-cormorant text-2xl text-stone-400 italic">Bazaar</p>
+            </div>
+        </div>
+
+        <!-- Interlinked Central Stamp Logo -->
+        <div id="intro-center-seal" role="button" tabindex="0" aria-label="Open Sultan Market gate"
+            style="transform: translate(-50%, -50%);"
+            class="intro-seal-button absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full bg-black border-4 border-gold-royal flex flex-col items-center justify-center text-center z-20 shadow-[0_0_50px_rgba(212,175,55,0.4)] transition-all duration-700 ease-out">
+            <svg viewBox="0 0 100 100" class="w-20 h-20 text-gold-royal fill-current">
+                <path d="M50 10 L85 30 L85 70 L50 90 L15 70 L15 30 Z" fill="none" stroke="currentColor"
+                    stroke-width="3" />
+                <path d="M42 40 Q50 32 58 40 Q62 48 50 56 Q38 48 42 40 Z" fill="none" stroke="currentColor"
+                    stroke-width="2" />
+                <circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-dasharray="2,2" />
+            </svg>
+            <span class="font-cinzel text-[10px] text-gold-royal uppercase tracking-widest mt-1 font-black">Open
+                Gate</span>
+        </div>
+    </div>
+
+    <!-- Theme Selection Customizer (Floating Widget) -->
+    <div
+        class="fixed right-6 bottom-6 z-40 bg-stone-950/90 border border-gold-royal/40 backdrop-blur-md p-3.5 rounded-2xl flex flex-col gap-2.5 items-center shadow-2xl">
+        <span class="text-[9px] uppercase tracking-[0.2em] font-bold text-gold-royal/90">Atmos Selector</span>
+        <div class="flex gap-2.5">
+            <!-- Royal Crimson Theme -->
+            <button type="button" onclick="setTheme('crimson')" title="Royal Crimson"
+                aria-label="Switch to Royal Crimson atmosphere" data-theme-button="crimson"
+                class="w-9 h-9 rounded-full border border-gold-royal/60 flex items-center justify-center bg-red-950 text-gold-royal hover:scale-115 transition-all relative group">
+                <span class="w-4 h-4 rounded-full bg-maroon-royal"></span>
+                <span
+                    class="absolute right-12 bg-black/95 text-[10px] py-1.5 px-2.5 rounded border border-gold-royal/30 hidden group-hover:block whitespace-nowrap">Royal
+                    Crimson</span>
+            </button>
+            <!-- Emerald Spice Theme -->
+            <button type="button" onclick="setTheme('emerald')" title="Emerald Spice"
+                aria-label="Switch to Emerald Spice atmosphere" data-theme-button="emerald"
+                class="w-9 h-9 rounded-full border border-gold-royal/60 flex items-center justify-center bg-emerald-950 text-gold-royal hover:scale-115 transition-all relative group">
+                <span class="w-4 h-4 rounded-full bg-emerald-800"></span>
+                <span
+                    class="absolute right-12 bg-black/95 text-[10px] py-1.5 px-2.5 rounded border border-gold-royal/30 hidden group-hover:block whitespace-nowrap">Emerald
+                    Spice</span>
+            </button>
+            <!-- Sandalwood/Amber Gold Theme -->
+            <button type="button" onclick="setTheme('gold')" title="Sovereign Amber"
+                aria-label="Switch to Sovereign Amber atmosphere" data-theme-button="gold"
+                class="w-9 h-9 rounded-full border border-gold-royal/60 flex items-center justify-center bg-amber-950 text-gold-royal hover:scale-115 transition-all relative group">
+                <span class="w-4 h-4 rounded-full bg-amber-600"></span>
+                <span
+                    class="absolute right-12 bg-black/95 text-[10px] py-1.5 px-2.5 rounded border border-gold-royal/30 hidden group-hover:block whitespace-nowrap">Sovereign
+                    Amber</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scroll-Driven Route Progress Track (Left aligned) -->
+    <div id="route-indicator-track"
+        class="fixed left-4 md:left-8 top-1/4 bottom-1/4 w-[2px] bg-stone-900/80 z-30 hidden sm:block">
+        <div id="route-indicator-filled"
+            class="w-full bg-gradient-to-b from-gold-bright via-tiger-orange to-gold-royal h-0 rounded-full shadow-[0_0_10px_rgba(230,92,0,0.8)]">
+        </div>
+
+        <!-- Interactive Milestone Markers -->
+        <div class="absolute left-1/2 -translate-x-1/2 flex flex-col justify-between h-full w-8 top-0">
+            <!-- Marker: Products -->
+            <a href="#products" id="marker-products"
+                class="w-6 h-6 rounded-full border border-gold-royal/40 bg-stone-950 flex items-center justify-center transition-all duration-500 hover:scale-125"
+                title="Bazaar Collections">
+                <svg viewBox="0 0 100 100" class="w-3.5 h-3.5 text-gold-royal">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="12" />
+                    <circle cx="50" cy="50" r="15" fill="currentColor" />
+                </svg>
+            </a>
+            <!-- Marker: Heritage -->
+            <a href="#heritage" id="marker-heritage"
+                class="w-6 h-6 rounded-full border border-gold-royal/40 bg-stone-950 flex items-center justify-center transition-all duration-500 hover:scale-125"
+                title="Our Mysore Heritage">
+                <svg viewBox="0 0 100 100" class="w-3.5 h-3.5 text-gold-royal">
+                    <path d="M50 15 L85 35 L85 70 L50 90 L15 70 L15 35 Z" fill="none" stroke="currentColor"
+                        stroke-width="10" />
+                </svg>
+            </a>
+            <!-- Marker: Bazaar Walk -->
+            <a href="#atmosphere" id="marker-atmosphere"
+                class="w-6 h-6 rounded-full border border-gold-royal/40 bg-stone-950 flex items-center justify-center transition-all duration-500 hover:scale-125"
+                title="Sensory Gateway">
+                <svg viewBox="0 0 100 100" class="w-3.5 h-3.5 text-gold-royal">
+                    <path d="M15 90 C15 50, 30 15, 50 15 C70 15, 85 50, 85 90" fill="none" stroke="currentColor"
+                        stroke-width="12" />
+                </svg>
+            </a>
+            <!-- Marker: Support -->
+            <a href="#support" id="marker-support"
+                class="w-6 h-6 rounded-full border border-gold-royal/40 bg-stone-950 flex items-center justify-center transition-all duration-500 hover:scale-125"
+                title="Royal Ledger">
+                <svg viewBox="0 0 100 100" class="w-3.5 h-3.5 text-gold-royal">
+                    <rect x="20" y="20" width="60" height="60" rx="10" fill="none" stroke="currentColor"
+                        stroke-width="12" />
+                    <line x1="35" y1="40" x2="65" y2="40" stroke="currentColor" stroke-width="8" />
+                    <line x1="35" y1="60" x2="55" y2="60" stroke="currentColor" stroke-width="8" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Sticky Navigation Bar -->
+    <header id="royal-header"
+        class="sticky top-0 z-40 w-full bg-black/85 backdrop-blur-md border-b border-gold-royal/15 transition-all duration-500 py-5">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+
+            <!-- Mysore Royal Crest Branding -->
+            <a href="#" class="flex items-center gap-3.5 group relative z-10">
+                <div
+                    class="w-12 h-12 rounded-full border border-gold-royal overflow-hidden bg-stone-950 p-1 flex items-center justify-center shadow-inner relative">
+                    <!-- Core Logo display frame checking fallback -->
+                    <img src="sultan market logo.jpg" alt="Sultan Market Crest" id="royal-logo"
+                        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        onerror="handleLogoFallback()">
+                    <div class="absolute inset-0 gold-shimmer opacity-20 pointer-events-none"></div>
+                </div>
+                <div>
+                    <span
+                        class="font-cinzel text-lg md:text-xl tracking-wider text-gold-royal font-bold block leading-none group-hover:text-gold-bright transition-colors">Sultan
+                        Market</span>
+                    <span class="text-[9px] tracking-[0.28em] text-stone-400 block uppercase leading-none mt-1.5">Est.
+                        1782 • Mysore Heritage</span>
+                </div>
+            </a>
+
+            <!-- Traditional Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-9">
+                <a href="#products"
+                    class="font-cormorant text-xl tracking-wider hover:text-gold-bright transition-colors relative group py-2">
+                    Products
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gold-royal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#heritage"
+                    class="font-cormorant text-xl tracking-wider hover:text-gold-bright transition-colors relative group py-2">
+                    Our Heritage
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gold-royal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#atmosphere"
+                    class="font-cormorant text-xl tracking-wider hover:text-gold-bright transition-colors relative group py-2">
+                    The Bazaar Walk
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gold-royal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#support"
+                    class="font-cormorant text-xl tracking-wider hover:text-gold-bright transition-colors relative group py-2">
+                    Support
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gold-royal transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="flex items-center gap-4 relative z-10">
+                <a href="#support"
+                    class="hidden sm:inline-block border border-gold-royal text-gold-royal px-6 py-2.5 rounded-full font-cormorant text-base tracking-[0.15em] uppercase hover:bg-gold-royal hover:text-black transition-all duration-300 hover-gold-glow">
+                    Royal Ledger
+                </a>
+                <!-- Mobile toggle -->
+                <button id="mobile-nav-toggle" class="md:hidden text-gold-royal focus:outline-none"
+                    aria-label="Toggle Navigation Gate">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Gates -->
+        <div id="mobile-drawer"
+            class="hidden md:hidden bg-stone-950/95 border-b border-gold-royal/20 transition-all duration-500">
+            <div class="px-6 py-8 flex flex-col gap-6 font-cormorant text-2xl text-center">
+                <a href="#products" class="hover:text-gold-bright py-2 border-b border-stone-900/60">Products</a>
+                <a href="#heritage" class="hover:text-gold-bright py-2 border-b border-stone-900/60">Our Heritage</a>
+                <a href="#atmosphere" class="hover:text-gold-bright py-2 border-b border-stone-900/60">The Bazaar
+                    Walk</a>
+                <a href="#support" class="hover:text-gold-bright py-2">Support</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Cinematic Gateway -->
+    <section id="hero" class="relative min-h-[95vh] flex items-center justify-center py-24 px-6 overflow-hidden z-10">
+        <!-- Giant Rotating Mandala Backdrop -->
+        <div
+            class="absolute w-[850px] h-[850px] top-10 opacity-[0.04] text-gold-royal spin-mandala pointer-events-none z-0">
+            <svg viewBox="0 0 100 100" class="w-full h-full fill-none stroke-current" stroke-width="0.2">
+                <circle cx="50" cy="50" r="46" />
+                <polygon points="50,4 96,50 50,96 4,50" />
+                <circle cx="50" cy="50" r="33" />
+                <polygon points="20,20 80,20 80,80 20,80" />
+                <circle cx="50" cy="50" r="18" />
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+
+            <!-- Narrative Column -->
+            <div class="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left reveal-gate active"
+                id="hero-left-block">
+                <div class="inline-flex items-center gap-3 justify-center lg:justify-start">
+                    <span class="h-[1.5px] w-10 bg-gold-royal"></span>
+                    <span class="font-cinzel text-[11px] tracking-[0.35em] text-gold-royal uppercase">A Tipu Sultan
+                        Legacy • Mysore 1782</span>
+                    <span class="h-[1.5px] w-10 bg-gold-royal"></span>
+                </div>
+
+                <h1 id="hero-main-title"
+                    class="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.15] text-white tracking-wide">
+                    Welcome to <br>
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-gold-bright via-gold-royal to-gold-dark filter drop-shadow-[0_2px_10px_rgba(212,175,55,0.3)]">
+                        Sultan Market
+                    </span>
+                </h1>
+
+                <h2 class="font-cormorant text-2xl sm:text-3xl italic text-gold-bright tracking-widest font-light">
+                    The Heart of Heritage & Trade
+                </h2>
+
+                <p class="font-cormorant text-xl text-stone-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                    Step into the timeless bazaar of Sultan Market, where every thread, every spice, and every story
+                    weaves a legacy of culture. Established in 1782 and rooted in the grandeur of Mysore’s sovereign
+                    heritage.
+                </p>
+
+                <div
+                    class="p-4 bg-maroon-royal/20 border-l-2 border-gold-royal/50 max-w-lg rounded-r-lg mx-auto lg:mx-0 text-left">
+                    <p class="font-sans text-xs tracking-wider text-gold-light/95 italic uppercase leading-relaxed">
+                        “Bringing the grandeur of Mysore’s finest goods to your doorstep.”
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mt-6">
+                    <a href="#products"
+                        class="bg-gradient-to-r from-gold-dark via-gold-royal to-gold-bright text-black font-semibold font-cinzel tracking-[0.2em] text-xs px-10 py-4.5 rounded-full hover:scale-105 transition-all duration-300 hover-gold-glow flex items-center justify-center shadow-lg">
+                        Explore The Bazaar
+                    </a>
+                    <a href="#heritage"
+                        class="border border-gold-royal text-gold-royal font-cinzel tracking-[0.2em] text-xs px-10 py-4.5 rounded-full hover:bg-gold-royal hover:text-black transition-all duration-300 hover:scale-105 flex items-center justify-center">
+                        Our 1782 Chronicle
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visual Emblem Column with Mysore Gate Framing -->
+            <div class="lg:col-span-5 flex justify-center reveal-gate active" id="hero-right-block"
+                style="transition-delay: 250ms;">
+                <div class="relative w-80 h-80 sm:w-[420px] sm:h-[420px]">
+
+                    <!-- Decorative Golden Concentric Circles -->
+                    <div class="absolute inset-0 rounded-full border border-gold-royal/20 animate-pulse"></div>
+                    <div class="absolute -inset-6 rounded-full border border-gold-royal/10 animate-ping"
+                        style="animation-duration: 4s;"></div>
+
+                    <!-- Main Frame (Octagonal Arch Silhouette) -->
+                    <div
+                        class="absolute inset-2 bg-stone-950 border-2 border-gold-royal flex flex-col items-center justify-center shadow-2xl heritage-border text-center overflow-hidden rounded-full">
+
+                        <!-- Mini Cornice Ornaments inside circle -->
+                        <span class="corner-ornament corner-tl"></span>
+                        <span class="corner-ornament corner-tr"></span>
+                        <span class="corner-ornament corner-bl"></span>
+                        <span class="corner-ornament corner-br"></span>
+
+                        <!-- Interactive Crest Area -->
+                        <div
+                            class="relative w-56 h-56 rounded-full border-4 border-gold-royal/40 overflow-hidden shadow-2xl bg-stone-900 group">
+                            <!-- SVG Mysore Crest containing Tiger symbols -->
+                            <svg viewBox="0 0 100 100"
+                                class="w-full h-full object-cover text-gold-royal fill-current p-6">
+                                <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2" />
+                                <path d="M50 12 L85 32 L85 68 L50 88 L15 68 L15 32 Z" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" />
+                                <!-- Symbolic Tiger Stripes -->
+                                <path d="M 18 45 Q 35 48 45 42 M 82 45 Q 65 48 55 42" stroke="currentColor"
+                                    stroke-width="1.5" fill="none" />
+                                <path d="M 18 55 Q 35 58 45 52 M 82 55 Q 65 58 55 52" stroke="currentColor"
+                                    stroke-width="1.5" fill="none" />
+                                <!-- Crown of the Sovereign -->
+                                <path d="M 38 32 L 44 38 L 50 30 L 56 38 L 62 32 L 50 42 Z" fill="currentColor" />
+                                <!-- Tiger Eyes that blink/glint dynamically -->
+                                <circle cx="43" cy="48" r="2.5" class="tiger-eye-glint fill-amber-500" />
+                                <circle cx="57" cy="48" r="2.5" class="tiger-eye-glint fill-amber-500" />
+                                <!-- SM Text -->
+                                <text x="50" y="68" font-family="'Cinzel Decorative'" font-size="12" font-weight="bold"
+                                    text-anchor="middle" fill="currentColor">SM</text>
+                                <text x="50" y="78" font-family="'Cormorant Garamond'" font-size="8" font-weight="bold"
+                                    text-anchor="middle" fill="currentColor" opacity="0.8">MYSORE</text>
+                            </svg>
+                            <!-- Shimmer filter overlay -->
+                            <div class="absolute inset-0 gold-shimmer opacity-25 pointer-events-none"></div>
+                        </div>
+
+                        <!-- Sovereign Stamp Tag -->
+                        <div class="mt-4 flex flex-col items-center">
+                            <span class="font-cinzel text-gold-bright text-xs tracking-[0.25em] font-bold">THE TIGER
+                                SEAL</span>
+                            <div
+                                class="w-20 h-[1px] bg-gradient-to-r from-transparent via-gold-royal to-transparent my-1">
+                            </div>
+                            <span class="font-cormorant text-xs italic text-stone-400">Authentic Sovereign Trade</span>
+                        </div>
+                    </div>
+
+                    <!-- Decorative Tassel visual anchor at bottom -->
+                    <div
+                        class="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-black border border-gold-royal px-5 py-2 rounded-full text-[9px] tracking-[0.3em] font-cinzel text-gold-royal uppercase shadow-2xl">
+                        TRUSTED STAMP
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div
+            class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#0e0c0d] to-transparent pointer-events-none">
+        </div>
+    </section>
+
+    <!-- Deep Quote Segment -->
+    <div class="bg-stone-950/90 border-y border-gold-royal/15 py-12 text-center px-4 overflow-hidden relative z-10">
+        <div class="max-w-4xl mx-auto flex flex-col items-center gap-4 reveal-gate">
+            <svg class="w-10 h-10 text-gold-royal/30" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+            </svg>
+            <p
+                class="font-cormorant text-2xl md:text-3xl italic text-gold-light tracking-wide max-w-3xl leading-relaxed">
+                "Weaving silk under royal banners and carrying rare spices across the high seas, Tipu Sultan’s empire
+                established a legacy where trade was treated as an act of sovereignty."
+            </p>
+            <div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-gold-royal to-transparent mt-2"></div>
+        </div>
+    </div>
+
+    <!-- Section: Bazaar Products Collections -->
+    <section id="products" class="py-28 px-6 relative z-10 bg-gradient-to-b from-transparent to-black/90">
+        <div class="max-w-7xl mx-auto relative">
+
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal-gate">
+                <span class="font-cinzel text-xs tracking-[0.35em] text-gold-royal uppercase block mb-3">The Sultan’s
+                    Curated Treasury</span>
+                <h2
+                    class="font-cinzel text-3xl sm:text-4xl lg:text-5xl text-white font-bold tracking-wide split-text-target">
+                    The Bazaar Collections
+                </h2>
+                <div class="flex items-center justify-center gap-4 mt-5">
+                    <span class="h-[1.5px] w-14 bg-gold-royal"></span>
+                    <span class="text-gold-royal text-xl">&#10059;</span>
+                    <span class="h-[1.5px] w-14 bg-gold-royal"></span>
+                </div>
+                <p class="font-cormorant text-xl text-stone-400 mt-5 max-w-3xl mx-auto leading-relaxed">
+                    Step inside individual merchant stalls of our royal bazaar. Each item is handcrafted, validated with
+                    the authentic Mysore ledger seals, and woven with generational pride.
+                </p>
+            </div>
+
+            <!-- Products stall grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Stall Card 1: Royal Textiles -->
+                <div
+                    class="bazaar-stall bg-stone-950 border border-gold-royal/20 rounded-3xl p-6 hover-gold-glow group flex flex-col justify-between relative overflow-hidden reveal-gate">
+                    <!-- Dynamic reflection gloss card overlay -->
+                    <div class="stall-sheen"></div>
+                    <!-- Subtle ambient color blur background -->
+                    <div
+                        class="absolute -top-16 -left-16 w-32 h-32 rounded-full bg-maroon-royal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl">
+                    </div>
+
+                    <div class="stall-inner">
+                        <!-- Palace window display arch with lift curtains -->
+                        <div class="relative w-full h-64 rounded-2xl overflow-hidden mysore-arch-border mb-6">
+                            <div class="mysore-arch w-full h-full bg-stone-900 flex items-center justify-center">
+                                <!-- Handcrafted vector illustration of Silk loom -->
+                                <svg viewBox="0 0 100 100"
+                                    class="w-full h-full text-gold-royal/40 fill-none p-4 transform group-hover:scale-105 transition-transform duration-700">
+                                    <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="1"
+                                        stroke-dasharray="2,2" />
+                                    <!-- Loom vertical strings -->
+                                    <path
+                                        d="M 25,10 L 25,90 M 35,10 L 35,90 M 45,10 L 45,90 M 55,10 L 55,90 M 65,10 L 65,90 M 75,10 L 75,90"
+                                        stroke="currentColor" stroke-width="0.5" />
+                                    <!-- Silk fold patterns crossing over -->
+                                    <path d="M 15,30 Q 50,70 85,30" stroke="currentColor" stroke-width="2" />
+                                    <path d="M 15,50 Q 50,90 85,50" stroke="currentColor" stroke-width="2.5"
+                                        class="text-maroon-royal" />
+                                    <path d="M 15,40 Q 50,20 85,40" stroke="currentColor" stroke-width="1"
+                                        class="text-gold-bright" />
+                                </svg>
+                            </div>
+
+                            <!-- Stall Curtain Overlays -->
+                            <div
+                                class="stall-curtain absolute inset-0 bg-gradient-to-b from-maroon-royal to-maroon-dark/95 flex flex-col items-center justify-center z-10 pointer-events-none p-4 text-center">
+                                <span class="text-gold-royal text-2xl mb-2">&#10059;</span>
+                                <span class="font-cinzel text-xs tracking-widest text-gold-bright">LIFT CURTAIN</span>
+                                <span class="font-cormorant text-xs italic text-stone-400 mt-1">Stall I • Loom
+                                    Guild</span>
+                            </div>
+                        </div>
+
+                        <span class="text-[9px] uppercase tracking-[0.25em] text-gold-royal font-bold block mb-2">Mysore
+                            Gold Zari</span>
+                        <h3
+                            class="font-cinzel text-xl font-bold text-white mb-2 tracking-wide group-hover:text-gold-bright transition-colors">
+                            Royal Textiles</h3>
+                        <p class="font-cormorant text-base text-stone-400 leading-relaxed mb-4">
+                            Heavy golden silks spun diligently using pure gold wire embroidery, carrying geometric tiger
+                            stripe motifs beloved by ancient court assemblies.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-stone-900 pt-5 flex items-center justify-between mt-4">
+                        <span class="font-cormorant italic text-sm text-gold-royal">Loom-Certified</span>
+                        <a href="#support"
+                            class="font-cinzel text-[10px] tracking-widest text-white hover:text-gold-bright transition-colors flex items-center gap-2 uppercase font-bold">
+                            Acquire <span
+                                class="group-hover:translate-x-2 transition-transform duration-300">&#10142;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stall Card 2: Spices -->
+                <div class="bazaar-stall bg-stone-950 border border-gold-royal/20 rounded-3xl p-6 hover-gold-glow group flex flex-col justify-between relative overflow-hidden reveal-gate"
+                    style="transition-delay: 100ms;">
+                    <div class="stall-sheen"></div>
+                    <div
+                        class="absolute -top-16 -left-16 w-32 h-32 rounded-full bg-tiger-burnt/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl">
+                    </div>
+
+                    <div class="stall-inner">
+                        <div class="relative w-full h-64 rounded-2xl overflow-hidden mysore-arch-border mb-6">
+                            <div class="mysore-arch w-full h-full bg-stone-900 flex items-center justify-center">
+                                <!-- Handcrafted vector illustration of Spice scales -->
+                                <svg viewBox="0 0 100 100"
+                                    class="w-full h-full text-gold-royal/40 fill-none p-4 transform group-hover:scale-105 transition-transform duration-700">
+                                    <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="1"
+                                        stroke-dasharray="2,2" />
+                                    <!-- Balanced scales -->
+                                    <path d="M 50,15 L 50,75 M 30,75 L 70,75" stroke="currentColor"
+                                        stroke-width="1.5" />
+                                    <path d="M 25,35 L 75,35" stroke="currentColor" stroke-width="2" />
+                                    <!-- Scale bowls -->
+                                    <path d="M 20,35 L 25,55 Q 25,60 20,60" stroke="currentColor" stroke-width="1" />
+                                    <path d="M 80,35 L 75,55 Q 75,60 80,60" stroke="currentColor" stroke-width="1" />
+                                    <!-- Saffron pods -->
+                                    <circle cx="50" cy="30" r="5" fill="currentColor" class="text-tiger-orange" />
+                                </svg>
+                            </div>
+
+                            <!-- Stall Curtain Overlays -->
+                            <div
+                                class="stall-curtain absolute inset-0 bg-gradient-to-b from-maroon-royal to-maroon-dark/95 flex flex-col items-center justify-center z-10 pointer-events-none p-4 text-center">
+                                <span class="text-gold-royal text-2xl mb-2">&#10059;</span>
+                                <span class="font-cinzel text-xs tracking-widest text-gold-bright">LIFT CURTAIN</span>
+                                <span class="font-cormorant text-xs italic text-stone-400 mt-1">Stall II • Route
+                                    Spices</span>
+                            </div>
+                        </div>
+
+                        <span
+                            class="text-[9px] uppercase tracking-[0.25em] text-gold-royal font-bold block mb-2">Imperial
+                            Cardamom & Saffron</span>
+                        <h3
+                            class="font-cinzel text-xl font-bold text-white mb-2 tracking-wide group-hover:text-gold-bright transition-colors">
+                            Aromatic Spices</h3>
+                        <p class="font-cormorant text-base text-stone-400 leading-relaxed mb-4">
+                            Deep red saffron filaments, slow-dried green cardamom pods, and Mysore black pepper
+                            originally traded as hard currency with international envoys.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-stone-900 pt-5 flex items-center justify-between mt-4">
+                        <span class="font-cormorant italic text-sm text-gold-royal">Harvest-Sealed</span>
+                        <a href="#support"
+                            class="font-cinzel text-[10px] tracking-widest text-white hover:text-gold-bright transition-colors flex items-center gap-2 uppercase font-bold">
+                            Acquire <span
+                                class="group-hover:translate-x-2 transition-transform duration-300">&#10142;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stall Card 3: Sandalwood & Attar -->
+                <div class="bazaar-stall bg-stone-950 border border-gold-royal/20 rounded-3xl p-6 hover-gold-glow group flex flex-col justify-between relative overflow-hidden reveal-gate"
+                    style="transition-delay: 200ms;">
+                    <div class="stall-sheen"></div>
+                    <div
+                        class="absolute -top-16 -left-16 w-32 h-32 rounded-full bg-emerald-950 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl">
+                    </div>
+
+                    <div class="stall-inner">
+                        <div class="relative w-full h-64 rounded-2xl overflow-hidden mysore-arch-border mb-6">
+                            <div class="mysore-arch w-full h-full bg-stone-900 flex items-center justify-center">
+                                <!-- Handcrafted vector illustration of Perfume Vial -->
+                                <svg viewBox="0 0 100 100"
+                                    class="w-full h-full text-gold-royal/40 fill-none p-4 transform group-hover:scale-105 transition-transform duration-700">
+                                    <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="1"
+                                        stroke-dasharray="2,2" />
+                                    <!-- Crystal Vial design -->
+                                    <rect x="38" y="38" width="24" height="40" rx="4" stroke="currentColor"
+                                        stroke-width="2" />
+                                    <path d="M46 38 L46 22 L54 22 L54 38" stroke="currentColor" stroke-width="1.5" />
+                                    <!-- Scent waves -->
+                                    <path d="M50 14 Q54 10 50 6 Q46 10 50 14" stroke="currentColor" stroke-width="1"
+                                        class="text-gold-bright" />
+                                </svg>
+                            </div>
+
+                            <!-- Stall Curtain Overlays -->
+                            <div
+                                class="stall-curtain absolute inset-0 bg-gradient-to-b from-maroon-royal to-maroon-dark/95 flex flex-col items-center justify-center z-10 pointer-events-none p-4 text-center">
+                                <span class="text-gold-royal text-2xl mb-2">&#10059;</span>
+                                <span class="font-cinzel text-xs tracking-widest text-gold-bright">LIFT CURTAIN</span>
+                                <span class="font-cormorant text-xs italic text-stone-400 mt-1">Stall III • Attar
+                                    Cellars</span>
+                            </div>
+                        </div>
+
+                        <span
+                            class="text-[9px] uppercase tracking-[0.25em] text-gold-royal font-bold block mb-2">Ancient
+                            Perfumed Oils</span>
+                        <h3
+                            class="font-cinzel text-xl font-bold text-white mb-2 tracking-wide group-hover:text-gold-bright transition-colors">
+                            Sandalwood & Attar</h3>
+                        <p class="font-cormorant text-base text-stone-400 leading-relaxed mb-4">
+                            Bespoke slow-steamed essential oils and aged sandalwood pastes kept safe in heavy
+                            hand-painted porcelain containers.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-stone-900 pt-5 flex items-center justify-between mt-4">
+                        <span class="font-cormorant italic text-sm text-gold-royal">Pure Oil Certified</span>
+                        <a href="#support"
+                            class="font-cinzel text-[10px] tracking-widest text-white hover:text-gold-bright transition-colors flex items-center gap-2 uppercase font-bold">
+                            Acquire <span
+                                class="group-hover:translate-x-2 transition-transform duration-300">&#10142;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stall Card 4: Handcrafted Objects -->
+                <div class="bazaar-stall bg-stone-950 border border-gold-royal/20 rounded-3xl p-6 hover-gold-glow group flex flex-col justify-between relative overflow-hidden reveal-gate"
+                    style="transition-delay: 300ms;">
+                    <div class="stall-sheen"></div>
+                    <div
+                        class="absolute -top-16 -left-16 w-32 h-32 rounded-full bg-amber-950 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl">
+                    </div>
+
+                    <div class="stall-inner">
+                        <div class="relative w-full h-64 rounded-2xl overflow-hidden mysore-arch-border mb-6">
+                            <div class="mysore-arch w-full h-full bg-stone-900 flex items-center justify-center">
+                                <!-- Handcrafted vector illustration of Brass Diya lamp -->
+                                <svg viewBox="0 0 100 100"
+                                    class="w-full h-full text-gold-royal/40 fill-none p-4 transform group-hover:scale-105 transition-transform duration-700">
+                                    <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="1"
+                                        stroke-dasharray="2,2" />
+                                    <!-- Diya shape -->
+                                    <path d="M 50,75 C 32,75 25,58 50,32 C 75,58 68,75 50,75 Z" stroke="currentColor"
+                                        stroke-width="2" />
+                                    <path d="M 50,32 Q 53,45 50,50 Q 47,45 50,32" fill="currentColor"
+                                        class="text-gold-bright animate-pulse" />
+                                    <line x1="25" y1="75" x2="75" y2="75" stroke="currentColor" stroke-width="3" />
+                                </svg>
+                            </div>
+
+                            <!-- Stall Curtain Overlays -->
+                            <div
+                                class="stall-curtain absolute inset-0 bg-gradient-to-b from-maroon-royal to-maroon-dark/95 flex flex-col items-center justify-center z-10 pointer-events-none p-4 text-center">
+                                <span class="text-gold-royal text-2xl mb-2">&#10059;</span>
+                                <span class="font-cinzel text-xs tracking-widest text-gold-bright">LIFT CURTAIN</span>
+                                <span class="font-cormorant text-xs italic text-stone-400 mt-1">Stall IV • Guild
+                                    Carvers</span>
+                            </div>
+                        </div>
+
+                        <span
+                            class="text-[9px] uppercase tracking-[0.25em] text-gold-royal font-bold block mb-2">Hand-Carved
+                            Ornaments</span>
+                        <h3
+                            class="font-cinzel text-xl font-bold text-white mb-2 tracking-wide group-hover:text-gold-bright transition-colors">
+                            Handcrafted Goods</h3>
+                        <p class="font-cormorant text-base text-stone-400 leading-relaxed mb-4">
+                            Carved rosewood chests, brass oil lamps (diyas), and intricate incense blocks chiseled
+                            painstakingly under the protection of Mysore’s guilds.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-stone-900 pt-5 flex items-center justify-between mt-4">
+                        <span class="font-cormorant italic text-sm text-gold-royal">Signed Masterpieces</span>
+                        <a href="#support"
+                            class="font-cinzel text-[10px] tracking-widest text-white hover:text-gold-bright transition-colors flex items-center gap-2 uppercase font-bold">
+                            Acquire <span
+                                class="group-hover:translate-x-2 transition-transform duration-300">&#10142;</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Heritage Chronicles Section -->
+    <section id="heritage" class="py-28 px-6 relative z-10 bg-[#0e0c0d] border-y border-gold-royal/15 overflow-hidden">
+
+        <!-- Intricate Side Corner Framings -->
+        <div class="absolute top-0 left-0 w-32 h-32 border-t-2 border-l-2 border-gold-royal/10"></div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 border-gold-royal/10"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+                <!-- History Narrative -->
+                <div class="lg:col-span-6 flex flex-col gap-6 reveal-gate">
+                    <span class="font-cinzel text-xs tracking-[0.35em] text-gold-royal uppercase">Our Roots &
+                        History</span>
+                    <h2
+                        class="font-cinzel text-3xl sm:text-4xl lg:text-5xl text-white font-bold tracking-wide leading-tight split-text-target">
+                        Established in 1782: <br>
+                        <span class="text-gold-royal">The Mysore Legacy</span>
+                    </h2>
+
+                    <div class="w-24 h-[2px] bg-gold-royal"></div>
+
+                    <p class="font-cormorant text-2xl text-stone-300 leading-relaxed italic">
+                        "For over two centuries, Sultan Market has preserved Mysore's sovereign standard of luxury trade
+                        under direct imperial principles."
+                    </p>
+
+                    <p class="font-sans text-sm text-stone-400 leading-relaxed">
+                        Sultan Market was founded in 1782, a pivotal era when the Tiger of Mysore, Tipu Sultan,
+                        championed innovative regional craft alliances. By giving official sovereign protections to
+                        weaver and carver guilds, Mysore's finest exports were guarded from generic, cheap
+                        mass-production.
+                    </p>
+
+                    <p class="font-sans text-sm text-stone-400 leading-relaxed">
+                        This digital vault brings these centuries of hand-finished authenticity straight to refined
+                        houses around the globe.
+                    </p>
+
+                    <!-- Interactive Stamped Ledger Seal -->
+                    <div class="mt-4 flex items-center gap-6">
+                        <div
+                            class="w-24 h-24 rounded-full bg-stone-950 border-2 border-red-800 flex items-center justify-center text-red-600 font-cinzel text-[11px] font-black uppercase text-center flex-shrink-0 relative shadow-2xl reveal-stamp">
+                            <!-- Curved Stamped Text Inside -->
+                            <svg viewBox="0 0 100 100" class="w-full h-full animate-spin fill-current"
+                                style="animation-duration: 35s;">
+                                <path id="sealPath" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
+                                    fill="none" />
+                                <text font-size="10" font-weight="900" fill="currentColor">
+                                    <textPath href="#sealPath" startOffset="0%">• SOVEREIGN TRUST • ESTD 1782 • ORIGINAL
+                                        GUILD</textPath>
+                                </text>
+                            </svg>
+                            <span
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-red-600 text-[10px]">MYSORE</span>
+                        </div>
+                        <div>
+                            <h4 class="font-cinzel text-xs font-bold text-gold-royal tracking-widest uppercase">Verified
+                                Royal Seal</h4>
+                            <p class="font-cormorant text-sm text-stone-400 mt-1 max-w-xs">Stamped dynamically on our
+                                trade ledgers to confirm single-source hand-finish origin.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chronological Ledger Timelines -->
+                <div class="lg:col-span-6 flex flex-col gap-10 reveal-gate" style="transition-delay: 200ms;">
+                    <div class="relative border-l-2 border-gold-royal/25 pl-10 ml-6 flex flex-col gap-12">
+
+                        <!-- Chronicle Entry 1 -->
+                        <div class="relative group">
+                            <!-- Timeline node as custom royal seal stamp -->
+                            <div
+                                class="absolute -left-[53px] top-1.5 w-6 h-6 rounded-full border border-gold-royal bg-black flex items-center justify-center group-hover:scale-125 transition-transform duration-300">
+                                <div class="w-2.5 h-2.5 rounded-full bg-gold-royal shadow-[0_0_8px_rgba(212,175,55,1)]">
+                                </div>
+                            </div>
+                            <span
+                                class="font-cinzel text-[10px] text-gold-royal tracking-widest uppercase block mb-1">1782
+                                • The Sovereign Decree</span>
+                            <h4 class="font-cinzel text-lg font-bold text-white mb-2 tracking-wide">Tipu Sultan's Royal
+                                Charter</h4>
+                            <p class="font-cormorant text-base text-stone-400 leading-relaxed">
+                                Establishment of protected bimonthly trading guilds in Mysore, offering artisans fixed
+                                gold rates to prevent degradation of traditional designs.
+                            </p>
+                        </div>
+
+                        <!-- Chronicle Entry 2 -->
+                        <div class="relative group">
+                            <div
+                                class="absolute -left-[53px] top-1.5 w-6 h-6 rounded-full border border-gold-royal bg-black flex items-center justify-center group-hover:scale-125 transition-transform duration-300">
+                                <div class="w-2.5 h-2.5 rounded-full bg-gold-royal shadow-[0_0_8px_rgba(212,175,55,1)]">
+                                </div>
+                            </div>
+                            <span
+                                class="font-cinzel text-[10px] text-gold-royal tracking-widest uppercase block mb-1">1885
+                                • Expanding Caravan Paths</span>
+                            <h4 class="font-cinzel text-lg font-bold text-white mb-2 tracking-wide">The Great Guild
+                                Alliance</h4>
+                            <p class="font-cormorant text-base text-stone-400 leading-relaxed">
+                                Standardizing Mysore sandalwood storage and spice sorting techniques, allowing Sultan
+                                Market to supply regional courts throughout South Asia.
+                            </p>
+                        </div>
+
+                        <!-- Chronicle Entry 3 -->
+                        <div class="relative group">
+                            <div
+                                class="absolute -left-[53px] top-1.5 w-6 h-6 rounded-full border border-gold-royal bg-black flex items-center justify-center group-hover:scale-125 transition-transform duration-300">
+                                <div class="w-2.5 h-2.5 rounded-full bg-gold-royal shadow-[0_0_8px_rgba(212,175,55,1)]">
+                                </div>
+                            </div>
+                            <span
+                                class="font-cinzel text-[10px] text-gold-royal tracking-widest uppercase block mb-1">Today
+                                • Digital Sovereign Guild</span>
+                            <h4 class="font-cinzel text-lg font-bold text-white mb-2 tracking-wide">The Living Bazaar
+                            </h4>
+                            <p class="font-cormorant text-base text-stone-400 leading-relaxed">
+                                Merging historic Mysore aesthetics with highly secure global delivery lanes, bringing
+                                handloomed gold silk and pure cardamoms directly to your doorstep.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- The Sensory Bazaar Walk Interactive Experience -->
+    <section id="atmosphere"
+        class="py-28 px-6 relative overflow-hidden z-10 bg-gradient-to-b from-stone-950 to-stone-900">
+
+        <!-- Delicate overlay pattern -->
+        <div class="absolute inset-0 bg-stone-950 opacity-50 mix-blend-multiply"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+
+            <div class="text-center mb-20 reveal-gate">
+                <span class="font-cinzel text-xs tracking-[0.35em] text-gold-royal uppercase block mb-3">Interactive
+                    Walkway</span>
+                <h2
+                    class="font-cinzel text-3xl sm:text-4xl lg:text-5xl text-white font-bold tracking-wide split-text-target">
+                    The Bazaar Walk
+                </h2>
+                <div class="flex items-center justify-center gap-4 mt-5">
+                    <span class="h-[1.5px] w-14 bg-gold-royal"></span>
+                    <span class="text-gold-royal text-xl">&#10059;</span>
+                    <span class="h-[1.5px] w-14 bg-gold-royal"></span>
+                </div>
+                <p class="font-cormorant text-xl text-stone-400 mt-5 max-w-3xl mx-auto leading-relaxed">
+                    Awaken your senses. Click a sensory gate below to walk through the atmosphere, observe real-time
+                    ambient changes, and explore the heritage of Sultan Market.
+                </p>
+            </div>
+
+            <!-- Sensory Selectors -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 reveal-gate">
+
+                <!-- Sight Selector -->
+                <button onclick="revealSensory('sight')" id="btn-sight"
+                    class="sensory-btn border border-gold-royal bg-stone-950/90 p-8 rounded-3xl flex flex-col items-center text-center gap-4 hover-gold-glow group transition-all duration-300">
+                    <div
+                        class="w-14 h-14 rounded-full border border-gold-royal flex items-center justify-center bg-gold-royal text-black transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-cinzel text-sm font-bold text-white uppercase tracking-wider">The Sight</h3>
+                    <p class="font-cormorant text-sm text-stone-400">Glimpse gold-threaded silk weaves and moving
+                        tiger-stripe lantern shadows.</p>
+                </button>
+
+                <!-- Scent Selector -->
+                <button onclick="revealSensory('scent')" id="btn-scent"
+                    class="sensory-btn border border-gold-royal/20 bg-stone-950/40 p-8 rounded-3xl flex flex-col items-center text-center gap-4 hover-gold-glow group transition-all duration-300">
+                    <div
+                        class="w-14 h-14 rounded-full border border-gold-royal/40 flex items-center justify-center text-gold-royal transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.996 7.996 0 0120 13a7.996 7.996 0 01-2.343 5.657z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-cinzel text-sm font-bold text-stone-300 uppercase tracking-wider">The Scent</h3>
+                    <p class="font-cormorant text-sm text-stone-500">Breathe in hand-pressed rose oil attar, slow
+                        incense, and sandalwood columns.</p>
+                </button>
+
+                <!-- Touch Selector -->
+                <button onclick="revealSensory('touch')" id="btn-touch"
+                    class="sensory-btn border border-gold-royal/20 bg-stone-950/40 p-8 rounded-3xl flex flex-col items-center text-center gap-4 hover-gold-glow group transition-all duration-300">
+                    <div
+                        class="w-14 h-14 rounded-full border border-gold-royal/40 flex items-center justify-center text-gold-royal transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 009 11.571V9a4 4 0 018 0v8.571a3 3 0 01-6 0v-2.286a4 4 0 00-8 0v2.857a4 4 0 001.312 2.985l1.31 1.14">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-cinzel text-sm font-bold text-stone-300 uppercase tracking-wider">The Touch</h3>
+                    <p class="font-cormorant text-sm text-stone-500">Feel cooling handloomed silk weaves and chiseled
+                        Rosewood carvings.</p>
+                </button>
+
+                <!-- Taste Selector -->
+                <button onclick="revealSensory('taste')" id="btn-taste"
+                    class="sensory-btn border border-gold-royal/20 bg-stone-950/40 p-8 rounded-3xl flex flex-col items-center text-center gap-4 hover-gold-glow group transition-all duration-300">
+                    <div
+                        class="w-14 h-14 rounded-full border border-gold-royal/40 flex items-center justify-center text-gold-royal transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-cinzel text-sm font-bold text-stone-300 uppercase tracking-wider">The Taste</h3>
+                    <p class="font-cormorant text-sm text-stone-500">Savor cardamom-steeped imperial infusions and
+                        rose-petal orchard honey.</p>
+                </button>
+
+            </div>
+
+            <!-- Dynamic Detail Presentation Box -->
+            <div
+                class="mt-12 bg-stone-950/90 border border-gold-royal/30 p-8 md:p-12 rounded-3xl relative overflow-hidden reveal-gate">
+                <!-- Ornaments inside box -->
+                <span class="corner-ornament corner-tl"></span>
+                <span class="corner-ornament corner-tr"></span>
+                <span class="corner-ornament corner-bl"></span>
+                <span class="corner-ornament corner-br"></span>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-8 flex flex-col gap-4">
+                        <span id="sensory-label"
+                            class="font-cinzel text-xs text-gold-royal tracking-[0.25em] uppercase font-bold">Visual
+                            Magnificence</span>
+                        <h3 id="sensory-title"
+                            class="font-cinzel text-2xl md:text-3xl font-bold text-white tracking-wide">Golden Canopy &
+                            Silk Curtains</h3>
+                        <p id="sensory-desc" class="font-cormorant text-xl text-stone-300 leading-relaxed">
+                            Under the grand tall stone arches built over two centuries ago, Mysore's afternoon sun
+                            filters through crimson silk drapes. This projects slow-moving tiger-stripe light patterns
+                            onto sandalwood counters, illuminating flickering brass oil lamps.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-4 flex justify-center">
+                        <div id="sensory-graphic-frame"
+                            class="w-48 h-48 rounded-full border-2 border-gold-royal/30 p-3 flex items-center justify-center relative transition-all duration-700">
+                            <!-- SVG Sensory Graphic reflecting Current Sensory Gate -->
+                            <svg viewBox="0 0 100 100"
+                                class="w-full h-full text-gold-royal/50 fill-none stroke-current animate-spin"
+                                style="animation-duration: 25s;">
+                                <circle cx="50" cy="50" r="42" />
+                                <path d="M50 8 L50 92 M8 50 L92 50 M20 20 L80 80 M20 80 L80 20" stroke-width="1.5" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="py-28 px-6 relative z-10 bg-gradient-to-t from-stone-950 via-stone-900 to-transparent">
+        <div class="max-w-4xl mx-auto relative z-10">
+
+            <div class="text-center mb-20 reveal-gate">
+                <span class="font-cinzel text-xs tracking-[0.35em] text-gold-royal uppercase block mb-3">Sovereign
+                    Service Ledger</span>
+                <h2
+                    class="font-cinzel text-3xl sm:text-4xl lg:text-5xl text-white font-bold tracking-wide split-text-target">
+                    Royal Support & Trade Assistance
+                </h2>
+                <div class="flex items-center justify-center gap-4 mt-5">
+                    <span class="h-[1.5px] w-14 bg-gold-royal"></span>
+                    <span class="text-gold-royal text-xl">&#10059;</span>
+                    <span class="h-[1.5px] w-14 bg-gold-royal"></span>
+                </div>
+                <p class="font-cormorant text-xl text-stone-400 mt-5 max-w-2xl mx-auto leading-relaxed">
+                    Write your required custom dimensions, caravan dispatch inquiries, or trade requests in our official
+                    ledger, and a royal bazaar scribe will process your dispatch.
+                </p>
+            </div>
+
+            <!-- Form Wrapper as a Royal Parchment -->
+            <div
+                class="glass-ledger border border-gold-royal/40 p-8 md:p-12 rounded-3xl shadow-2xl relative reveal-gate">
+                <span class="corner-ornament corner-tl"></span>
+                <span class="corner-ornament corner-tr"></span>
+                <span class="corner-ornament corner-bl"></span>
+                <span class="corner-ornament corner-br"></span>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 text-center md:text-left border-b border-stone-900 pb-8">
+                    <div class="flex flex-col gap-2">
+                        <span class="font-cinzel text-xs text-gold-royal uppercase tracking-widest font-bold">1.
+                            Delivery Support</span>
+                        <p class="font-cormorant text-sm text-stone-400">Handled by trusted regional caravan routes and
+                            secure express shipping.</p>
+                    </div>
+                    <div
+                        class="flex flex-col gap-2 border-y md:border-y-0 md:border-x border-stone-900 py-6 md:py-0 md:px-6">
+                        <span class="font-cinzel text-xs text-gold-royal uppercase tracking-widest font-bold">2. Custom
+                            Inquiries</span>
+                        <p class="font-cormorant text-sm text-stone-400">Commission weaver or sandalwood carver guilds
+                            for personalized designs.</p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span class="font-cinzel text-xs text-gold-royal uppercase tracking-widest font-bold">3. Trade
+                            Advisory</span>
+                        <p class="font-cormorant text-sm text-stone-400">Verifiable corporate and artisanal exports
+                            carrying certified royal stamps.</p>
+                    </div>
+                </div>
+
+                <!-- Inquiry Form -->
+                <form id="ledger-form" onsubmit="handleInquirySubmit(event)" class="flex flex-col gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Name -->
+                        <div class="flex flex-col gap-2">
+                            <label for="ledger-name"
+                                class="font-cinzel text-[10px] tracking-widest text-gold-royal uppercase font-bold">Sovereign
+                                Full Name</label>
+                            <input type="text" id="ledger-name" required autocomplete="name"
+                                placeholder="Maharaja / Collector Name"
+                                class="bg-stone-900 border border-gold-royal/20 focus:border-gold-royal focus:ring-1 focus:ring-gold-royal text-stone-200 rounded-lg px-4 py-3.5 font-cormorant text-lg outline-none transition-all">
+                        </div>
+                        <!-- Email -->
+                        <div class="flex flex-col gap-2">
+                            <label for="ledger-email"
+                                class="font-cinzel text-[10px] tracking-widest text-gold-royal uppercase font-bold">Courier
+                                Dispatch Email</label>
+                            <input type="email" id="ledger-email" required autocomplete="email"
+                                placeholder="dispatch@domain.com"
+                                class="bg-stone-900 border border-gold-royal/20 focus:border-gold-royal focus:ring-1 focus:ring-gold-royal text-stone-200 rounded-lg px-4 py-3.5 font-cormorant text-lg outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Category selection -->
+                        <div class="flex flex-col gap-2">
+                            <label for="ledger-category"
+                                class="font-cinzel text-[10px] tracking-widest text-gold-royal uppercase font-bold">Nature
+                                of Inquiry</label>
+                            <select id="ledger-category"
+                                class="bg-stone-900 border border-gold-royal/20 focus:border-gold-royal focus:ring-1 focus:ring-gold-royal text-stone-200 rounded-lg px-4 py-3.5 font-cormorant text-lg outline-none transition-all">
+                                <option value="textiles">Royal Mysore Textiles</option>
+                                <option value="spices">Aromatic Spices & Pantry</option>
+                                <option value="sandalwood">Sandalwood & Attar Oils</option>
+                                <option value="handcrafted">Artisanal Handcrafted Objects</option>
+                                <option value="delivery">Custom Guild Carriage / Delivery</option>
+                            </select>
+                        </div>
+                        <!-- Priority status -->
+                        <div class="flex flex-col gap-2">
+                            <label
+                                class="font-cinzel text-[10px] tracking-widest text-gold-royal uppercase font-bold mb-1">Caravan
+                                Dispatch Priority</label>
+                            <div class="flex gap-6 py-2.5">
+                                <label
+                                    class="flex items-center gap-2 cursor-pointer font-cormorant text-base text-stone-300">
+                                    <input type="radio" name="urgency" value="standard" checked
+                                        class="accent-gold-royal"> Standard Caravan
+                                </label>
+                                <label
+                                    class="flex items-center gap-2 cursor-pointer font-cormorant text-base text-gold-bright">
+                                    <input type="radio" name="urgency" value="royal" class="accent-gold-royal"> Royal
+                                    Express Courier
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message Body -->
+                    <div class="flex flex-col gap-2">
+                        <label for="ledger-message"
+                            class="font-cinzel text-[10px] tracking-widest text-gold-royal uppercase font-bold">Your
+                            Requested Manifest</label>
+                        <textarea id="ledger-message" required rows="4"
+                            placeholder="Detail the products, dimensions, or specific spice counts you wish to acquire..."
+                            class="bg-stone-900 border border-gold-royal/20 focus:border-gold-royal focus:ring-1 focus:ring-gold-royal text-stone-200 rounded-lg px-4 py-3.5 font-cormorant text-lg outline-none transition-all resize-none"></textarea>
+                    </div>
+
+                    <!-- Wax Seal Submit Button -->
+                    <div class="flex flex-col items-center gap-4 mt-4">
+                        <button type="submit"
+                            class="w-full sm:w-auto bg-gradient-to-r from-gold-dark via-gold-royal to-gold-bright text-black font-semibold font-cinzel tracking-widest text-xs px-12 py-5 rounded-full hover:scale-105 transition-all duration-300 hover-gold-glow flex items-center justify-center gap-3">
+                            <!-- Wax Seal SVG Emblem -->
+                            <svg class="w-5 h-5 fill-current animate-pulse" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+                                <path d="M12 4 C9 4 6 7 6 12 C6 17 9 20 12 20 C15 20 18 17 18 12 C18 7 15 4 12 4 Z"
+                                    fill="currentColor" opacity="0.3" />
+                                <path d="M10 9 L14 9 L12 15 Z" fill="currentColor" />
+                            </svg>
+                            Imprint in Royal Ledger
+                        </button>
+
+                        <!-- Confirmation Feedback -->
+                        <div id="ledger-feedback" aria-live="polite" class="hidden flex-col items-center gap-3 mt-4">
+                            <!-- Dynamic Seal Graphic popping up -->
+                            <div
+                                class="w-16 h-16 rounded-full bg-red-700 text-white flex items-center justify-center font-cinzel text-[9px] font-bold border-2 border-gold-royal shadow-lg">
+                                SEALED</div>
+                            <p id="ledger-feedback-text"
+                                class="text-gold-bright font-cormorant text-lg italic text-center max-w-md"></p>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer of the Scroll Scroll -->
+    <footer class="bg-stone-950 border-t border-gold-royal/30 py-16 px-6 relative overflow-hidden z-10">
+
+        <!-- Upward Return Anchor button -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <a href="#"
+                class="w-12 h-12 rounded-full bg-black border border-gold-royal flex items-center justify-center text-gold-royal hover:text-white hover:scale-110 transition-transform shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+                title="Return to Marketplace Entry">
+                &#9650;
+            </a>
+        </div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
+
+            <!-- Company Info -->
+            <div class="md:col-span-5 flex flex-col gap-4 text-center md:text-left">
+                <span class="font-cinzel text-xl font-bold tracking-widest text-gold-royal uppercase">Sultan
+                    Market</span>
+                <p class="font-cormorant text-base text-stone-400 max-w-sm mx-auto md:mx-0">
+                    Est. 1782 • Delivering fine loom gold silk, aromatic spices, pure sandalwood attar, and rosewood
+                    chiseled carvings with genuine Mysore guild credentials.
+                </p>
+                <div class="w-20 h-[1px] bg-gold-royal mx-auto md:mx-0"></div>
+                <span class="text-[9px] tracking-[0.25em] text-stone-500 uppercase font-bold">“The Sovereign Stamp of
+                    Indian Trade”</span>
+            </div>
+
+            <!-- Shortcuts -->
+            <div class="md:col-span-3 flex flex-col gap-2.5 text-center md:text-left font-cormorant text-lg">
+                <span class="font-cinzel text-[10px] tracking-widest text-gold-royal uppercase font-bold mb-2">Heritage
+                    Routes</span>
+                <a href="#products" class="hover:text-gold-bright transition-colors">Bazaar Collections</a>
+                <a href="#heritage" class="hover:text-gold-bright transition-colors">Chronicles of 1782</a>
+                <a href="#atmosphere" class="hover:text-gold-bright transition-colors">Walk Through Bazaar</a>
+                <a href="#support" class="hover:text-gold-bright transition-colors">Ledger Assistance</a>
+            </div>
+
+            <!-- Guarantee Stamp Block -->
+            <div
+                class="md:col-span-4 flex flex-col gap-3 text-center md:text-left border-t border-stone-900 md:border-t-0 pt-8 md:pt-0">
+                <span class="font-cinzel text-[10px] tracking-widest text-gold-royal uppercase font-bold">The Royal
+                    Assurance</span>
+                <p class="font-cormorant text-sm text-stone-400">
+                    Each dispatch prepared inside the Sultan Market receives a hand-pressed lacquer wax seal,
+                    safeguarding item verification and ensuring maximum ethical commission payouts to independent rural
+                    artisans.
+                </p>
+                <div class="flex gap-4 justify-center md:justify-start text-xs font-mono text-gold-royal/50 mt-2">
+                    <span>#TipuSultanHeritage</span>
+                    <span>#Mysore1782</span>
+                    <span>#ArtisanDirect</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto border-t border-stone-900 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4 text-center sm:text-left">
+            <p>© 2026 Sultan Market. Rooted in the visual splendor and royal trade charter of Mysore (1782). Celebrating
+                traditional South Indian guilds.</p>
+            <div class="flex gap-6">
+                <span class="hover:text-stone-300 cursor-pointer">Sovereign Terms</span>
+                <span class="hover:text-stone-300 cursor-pointer">Artisan Protections</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Canvas Particle Scripts & Scroll Animation Triggers -->
+    <script>
+        // 1. Mobile navigation Gate control
+        const mobileToggle = document.getElementById('mobile-nav-toggle');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileDrawer.classList.toggle('hidden');
+        });
+        mobileDrawer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                mobileDrawer.classList.add('hidden');
+            }
+        });
+
+        // 2. Safe Logo Graphic Fallback inside the Royal Crest
+        function handleLogoFallback() {
+            const logoContainer = document.getElementById('royal-logo').parentNode;
+            logoContainer.innerHTML = `
+                <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-stone-950 via-maroon-dark to-stone-950 text-gold-royal">
+                    <!-- Sovereign Mysore Tiger Crest in pure SVG -->
+                    <svg viewBox="0 0 100 100" class="w-10 h-10 fill-current text-gold-royal">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <!-- Crown -->
+                        <path d="M 40 35 L 45 42 L 50 32 L 55 42 L 60 35 L 50 48 Z"/>
+                        <!-- Tiger Face Symbols -->
+                        <circle cx="43" cy="54" r="2.5" class="tiger-eye-glint fill-amber-500"/>
+                        <circle cx="57" cy="54" r="2.5" class="tiger-eye-glint fill-amber-500"/>
+                        <path d="M 33 62 Q 50 67 67 62" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </div>
+            `;
+        }
+
+        // 4. Dynamic Interactive Sensory Gateway Walk
+        const sensoryWalkways = {
+            sight: {
+                label: 'Visual Magnificence',
+                title: 'Golden Canopy & Silk Curtains',
+                desc: 'Under the grand tall stone arches built over two centuries ago, Mysore\'s afternoon sun filters through crimson silk drapes. This projects slow-moving tiger-stripe light patterns onto sandalwood counters, illuminating flickering brass oil lamps.',
+                graphic: `
+                    <svg viewBox="0 0 100 100" class="w-full h-full text-gold-royal fill-none stroke-current animate-spin" style="animation-duration: 25s;">
+                        <circle cx="50" cy="50" r="40" stroke-width="1.5"/>
+                        <polygon points="50,10 90,50 50,90 10,50" stroke-width="1"/>
+                        <circle cx="50" cy="50" r="15" stroke-width="2"/>
+                    </svg>`
+            },
+            scent: {
+                label: 'Aromatic Weaving',
+                title: 'Sandalwood Arches & Attar Oils',
+                desc: 'As you wander past the merchants of the attar guild, the dense, earthy aroma of authentic Mysore Sandalwood oil fills the corridor. It is blended with fresh extracts of slow-steamed damask roses and aged dry vetiver root.',
+                graphic: `
+                    <svg viewBox="0 0 100 100" class="w-full h-full text-gold-bright fill-none stroke-current animate-pulse">
+                        <circle cx="50" cy="50" r="30" stroke-width="2"/>
+                        <path d="M50,15 Q55,30 50,45 Q45,60 50,75" stroke-width="2.5" class="text-tiger-orange"/>
+                        <path d="M35,30 Q40,50 35,70" stroke-width="1"/>
+                        <path d="M65,30 Q60,50 65,70" stroke-width="1"/>
+                    </svg>`
+            },
+            touch: {
+                label: 'Artisanal Tactile Integrity',
+                title: 'Polished Wood & Pure Handlooms',
+                desc: 'Fingertips glide over the textured patterns of premium Mysore gold silks. You feel the microscopic weavers knots and the robust solidity of sandalwood carvings, chiseled to capture the royal crest of the Tiger of Mysore.',
+                graphic: `
+                    <svg viewBox="0 0 100 100" class="w-full h-full text-gold-royal fill-none stroke-current">
+                        <rect x="22" y="22" width="56" height="56" stroke-width="2" rx="4"/>
+                        <path d="M22,22 L78,78 M78,22 L22,78" stroke-width="1" stroke-dasharray="2,2"/>
+                        <circle cx="50" cy="50" r="12" stroke-width="1.5" fill="currentColor" class="text-stone-900"/>
+                    </svg>`
+            },
+            taste: {
+                label: 'The Imperial Culinary Route',
+                title: 'Spice Infusions & Orchard Nectars',
+                desc: 'A brief taste of pure green cardamom seeds and deep red saffron strands provides a highly pleasant, warming burst of spice. It leaves a sophisticated botanical note reminiscent of the honeyed ceremonial teas poured for VIP visitors.',
+                graphic: `
+                    <svg viewBox="0 0 100 100" class="w-full h-full text-gold-bright fill-none stroke-current">
+                        <polygon points="50,15 85,75 15,75" stroke-width="2"/>
+                        <circle cx="50" cy="55" r="14" stroke-width="1.5" stroke-dasharray="3,1"/>
+                    </svg>`
+            }
+        };
+
+        let activeSense = 'sight';
+        function revealSensory(senseKey) {
+            activeSense = senseKey;
+
+            // Dim other sensory buttons
+            const buttons = document.querySelectorAll('.sensory-btn');
+            buttons.forEach(btn => {
+                btn.classList.add('border-gold-royal/20', 'bg-stone-950/40');
+                btn.classList.remove('border-gold-royal', 'bg-stone-950/90');
+                btn.querySelector('h3').className = "font-cinzel text-sm font-bold text-stone-300 uppercase tracking-wider";
+                btn.querySelector('p').className = "font-cormorant text-sm text-stone-500";
+
+                const iconFrame = btn.querySelector('.w-14');
+                iconFrame.classList.remove('bg-gold-royal', 'text-black');
+                iconFrame.classList.add('border-gold-royal/40', 'text-gold-royal');
+            });
+
+            // Highlight the selected sensory button
+            const activeBtn = document.getElementById(`btn-${senseKey}`);
+            activeBtn.classList.remove('border-gold-royal/20', 'bg-stone-950/40');
+            activeBtn.classList.add('border-gold-royal', 'bg-stone-950/90');
+            activeBtn.querySelector('h3').className = "font-cinzel text-sm font-bold text-white uppercase tracking-wider";
+            activeBtn.querySelector('p').className = "font-cormorant text-sm text-stone-400";
+
+            const activeIconFrame = activeBtn.querySelector('.w-14');
+            activeIconFrame.classList.add('bg-gold-royal', 'text-black');
+            activeIconFrame.classList.remove('border-gold-royal/40', 'text-gold-royal');
+
+            // Cross-fade the detail contents
+            const label = document.getElementById('sensory-label');
+            const title = document.getElementById('sensory-title');
+            const desc = document.getElementById('sensory-desc');
+            const graphicFrame = document.getElementById('sensory-graphic-frame');
+
+            label.style.opacity = 0;
+            title.style.opacity = 0;
+            desc.style.opacity = 0;
+            graphicFrame.style.opacity = 0;
+
+            setTimeout(() => {
+                label.textContent = sensoryWalkways[senseKey].label;
+                title.textContent = sensoryWalkways[senseKey].title;
+                desc.textContent = sensoryWalkways[senseKey].desc;
+                graphicFrame.innerHTML = sensoryWalkways[senseKey].graphic;
+
+                label.style.opacity = 1;
+                title.style.opacity = 1;
+                desc.style.opacity = 1;
+                graphicFrame.style.opacity = 1;
+            }, 250);
+        }
+
+        // Apply standard css transitions on sensory box elements
+        document.getElementById('sensory-label').style.transition = 'opacity 0.25s ease';
+        document.getElementById('sensory-title').style.transition = 'opacity 0.25s ease';
+        document.getElementById('sensory-desc').style.transition = 'opacity 0.25s ease';
+        document.getElementById('sensory-graphic-frame').style.transition = 'opacity 0.25s ease';
+
+        // 5. Multi-Atmosphere Dynamic Theme Customizer
+        const themes = {
+            crimson: {
+                primary: '#4a0e17',
+                secondary: '#0e0c0d',
+                accent: '#d4af37',
+                accentRGB: '212, 175, 55',
+                gradient: 'radial-gradient(circle at 50% 50%, #2b050b 0%, #0e0c0d 100%)'
+            },
+            emerald: {
+                primary: '#062c1e',
+                secondary: '#010805',
+                accent: '#dfd5c6',
+                accentRGB: '223, 213, 198',
+                gradient: 'radial-gradient(circle at 50% 50%, #021a11 0%, #010805 100%)'
+            },
+            gold: {
+                primary: '#523e13',
+                secondary: '#0d0902',
+                accent: '#e5c158',
+                accentRGB: '229, 193, 88',
+                gradient: 'radial-gradient(circle at 50% 50%, #291d06 0%, #0d0902 100%)'
+            }
+        };
+
+        function setTheme(themeKey, persist = true) {
+            const selectedTheme = themes[themeKey];
+            if (!selectedTheme) return;
+
+            // Set variables dynamically in document root CSS
+            document.documentElement.style.setProperty('--theme-primary', selectedTheme.primary);
+            document.documentElement.style.setProperty('--theme-secondary', selectedTheme.secondary);
+            document.documentElement.style.setProperty('--theme-accent', selectedTheme.accent);
+            document.documentElement.style.setProperty('--theme-accent-rgb', selectedTheme.accentRGB);
+            document.documentElement.style.setProperty('--theme-bg-gradient', selectedTheme.gradient);
+            document.querySelector('meta[name="theme-color"]')?.setAttribute('content', selectedTheme.secondary);
+
+            // Adjust body background style inline
+            document.body.style.background = selectedTheme.gradient;
+
+            // Remember visitor preference without breaking private browsing modes
+            try {
+                if (persist) localStorage.setItem('sultan-market-theme', themeKey);
+            } catch (err) {
+                // Local storage may be unavailable. Ignore gracefully.
+            }
+
+            // Keep selector state accessible
+            document.querySelectorAll('[data-theme-button]').forEach(button => {
+                const isActive = button.dataset.themeButton === themeKey;
+                button.setAttribute('aria-pressed', String(isActive));
+                button.classList.toggle('ring-2', isActive);
+                button.classList.toggle('ring-gold-royal', isActive);
+            });
+
+            // Optional temporary visual transition splash
+            const splash = document.createElement('div');
+            splash.className = 'fixed inset-0 z-50 pointer-events-none bg-stone-950 opacity-40 transition-opacity duration-1000';
+            document.body.appendChild(splash);
+            setTimeout(() => {
+                splash.style.opacity = 0;
+                setTimeout(() => splash.remove(), 1000);
+            }, 100);
+        }
+
+        function applyStoredTheme() {
+            try {
+                const storedTheme = localStorage.getItem('sultan-market-theme');
+                setTheme(storedTheme || 'crimson', false);
+            } catch (err) {
+                setTheme('crimson', false);
+            }
+        }
+
+        // 6. Header Scroll shrink control
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('royal-header');
+            if (window.scrollY > 80) {
+                header.classList.remove('py-5');
+                header.classList.add('py-3.5', 'shadow-2xl');
+            } else {
+                header.classList.remove('py-3.5', 'shadow-2xl');
+                header.classList.add('py-5');
+            }
+        });
+
+        // 7. Dynamic Scroll progress tracking & milestones inside Trade Route Indicators
+        const routeTrack = document.getElementById('route-indicator-track');
+        const routeFilled = document.getElementById('route-indicator-filled');
+        const markers = {
+            products: document.getElementById('marker-products'),
+            heritage: document.getElementById('marker-heritage'),
+            atmosphere: document.getElementById('marker-atmosphere'),
+            support: document.getElementById('marker-support')
+        };
+
+        window.addEventListener('scroll', () => {
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (documentHeight <= 0) return;
+
+            const scrollPercentage = (window.scrollY / documentHeight) * 100;
+            routeFilled.style.height = `${scrollPercentage}%`;
+
+            // Active milestone indicators highlighting based on elements current viewport overlap
+            const sections = ['products', 'heritage', 'atmosphere', 'support'];
+            sections.forEach(secId => {
+                const secEl = document.getElementById(secId);
+                if (secEl) {
+                    const rect = secEl.getBoundingClientRect();
+                    // If section is currently mostly visible
+                    if (rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.3) {
+                        markers[secId]?.classList.add('scale-125', 'border-gold-bright', 'bg-gold-royal/20');
+                        markers[secId]?.querySelector('svg')?.classList.add('text-gold-bright');
+                    } else {
+                        markers[secId]?.classList.remove('scale-125', 'border-gold-bright', 'bg-gold-royal/20');
+                        markers[secId]?.querySelector('svg')?.classList.remove('text-gold-bright');
+                    }
+                }
+            });
+        });
+
+        // 8. Custom Stamped Inquiry Confirmation Ledger
+        function handleInquirySubmit(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('ledger-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const name = document.getElementById('ledger-name').value.trim();
+            const categoryEl = document.getElementById('ledger-category');
+            const categoryName = categoryEl.options[categoryEl.selectedIndex].text;
+
+            const feedback = document.getElementById('ledger-feedback');
+            const feedbackText = document.getElementById('ledger-feedback-text');
+
+            // Hide previous state
+            feedback.classList.remove('flex');
+            feedback.classList.add('hidden');
+
+            setTimeout(() => {
+                feedback.classList.remove('hidden');
+                feedback.classList.add('flex');
+                // textContent prevents accidental HTML injection from the name field.
+                feedbackText.textContent = `Success! The request for ${name} regarding ${categoryName} has been logged inside our Mysore trade books. Safe caravan dispatch initiated.`;
+                form.reset();
+            }, 350);
+        }
+
+        // 9. Traditional Intro Gate Activation Sequence
+        window.addEventListener('DOMContentLoaded', () => {
+            applyStoredTheme();
+
+            const introPortal = document.getElementById('intro-portal');
+            const leftGate = document.getElementById('intro-gate-left');
+            const rightGate = document.getElementById('intro-gate-right');
+            const centerSeal = document.getElementById('intro-center-seal');
+            let bazaarGatesOpened = false;
+
+            // Trigger arch drawing simulation paths
+            const leftArchPath = document.getElementById('arch-left-drawing');
+            const rightArchPath = document.getElementById('arch-right-drawing');
+
+            if (leftArchPath && rightArchPath) {
+                leftArchPath.style.strokeDashoffset = '0';
+                rightArchPath.style.strokeDashoffset = '0';
+                leftArchPath.style.transition = 'stroke-dashoffset 1.5s ease-out';
+                rightArchPath.style.transition = 'stroke-dashoffset 1.5s ease-out';
+            }
+
+            // Click seal or standard delay to slide open the gates.
+            // The doors now move immediately over a transparent overlay, so the page underneath
+            // is revealed continuously through the opening instead of appearing after a blank red pause.
+            const openBazaarGates = () => {
+                if (bazaarGatesOpened) return;
+                bazaarGatesOpened = true;
+
+                introPortal.classList.add('is-opening');
+                centerSeal.style.pointerEvents = 'none';
+                centerSeal.setAttribute('tabindex', '-1');
+                if (document.activeElement === centerSeal) {
+                    centerSeal.blur();
+                }
+
+                // Open the doors and fade the seal at the same time. No intermediate red screen.
+                leftGate.style.transform = 'translate3d(-100%, 0, 0)';
+                rightGate.style.transform = 'translate3d(100%, 0, 0)';
+                centerSeal.style.transform = 'translate(-50%, -50%) scale(0.72) rotate(18deg)';
+                centerSeal.style.opacity = '0';
+
+                setTimeout(() => {
+                    // Move focus away from the seal before hiding its parent.
+                    // This avoids the browser warning: “Blocked aria-hidden because its descendant retained focus.”
+                    if (document.activeElement && introPortal.contains(document.activeElement)) {
+                        document.activeElement.blur();
+                    }
+
+                    introPortal.classList.add('hidden', 'is-closed');
+                    introPortal.setAttribute('hidden', '');
+                    introPortal.style.display = 'none';
+                    introPortal.style.pointerEvents = 'none';
+
+                    // Keep assistive tech from entering the removed overlay without using aria-hidden on a focused node.
+                    if ('inert' in introPortal) {
+                        introPortal.inert = true;
+                    }
+                }, 1650);
+            };
+
+            centerSeal.addEventListener('click', openBazaarGates);
+            centerSeal.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openBazaarGates();
+                }
+            });
+            // Auto open fallback in 4 seconds in case user is idling
+            setTimeout(openBazaarGates, 4000);
+        });
+
+        // 10. Advanced Scroll Intersection Observers & Headings Character Splitting
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Character Splitting for cinematic reveals
+            const splitTargets = document.querySelectorAll('.split-text-target');
+            splitTargets.forEach(target => {
+                const text = target.textContent.trim();
+                target.innerHTML = '';
+
+                text.split('').forEach((char, idx) => {
+                    const span = document.createElement('span');
+                    span.className = 'split-char';
+                    span.style.transitionDelay = `${idx * 25}ms`;
+                    // preserve space formatting
+                    if (char === ' ') {
+                        span.innerHTML = '&nbsp;';
+                    } else {
+                        span.textContent = char;
+                    }
+                    target.appendChild(span);
+                });
+            });
+
+            // Initialize observer
+            const revealElements = document.querySelectorAll('.reveal-gate, .reveal-stamp');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        });
+
+        // 11. Immersive Canvas Particle Engine (Spice Dust & Rocket Light Trails)
+        const canvas = document.getElementById('bazaar-ambient-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        let lightTrails = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // Sync custom trail canvas dimensions too
+            const trailCanvas = document.getElementById('cursor-trail-canvas');
+            if (trailCanvas) {
+                trailCanvas.width = window.innerWidth;
+                trailCanvas.height = window.innerHeight;
+            }
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Particle model representation
+        class AmbientParticle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.8 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * -0.5 - 0.2; // Slow floating upwards
+                this.alpha = Math.random() * 0.5 + 0.1;
+                this.fadeSpeed = Math.random() * 0.005 + 0.002;
+
+                // Color variation based on active sensory walk gate
+                this.color = '#d4af37'; // standard gold
+                if (activeSense === 'scent') {
+                    this.color = '#a8a29e'; // soft silver/grey smoke
+                } else if (activeSense === 'touch') {
+                    this.color = '#10b981'; // emerald hints
+                } else if (activeSense === 'taste') {
+                    this.color = '#ea580c'; // fiery cardamom orange
+                }
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.alpha -= this.fadeSpeed;
+
+                if (this.alpha <= 0 || this.y < 0 || this.x < 0 || this.x > canvas.width) {
+                    this.reset();
+                    this.y = canvas.height; // reappear from bottom
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Mysorean Rocket light trail comets (elegant trade comets)
+        class RocketLightTrail {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.startX = Math.random() * canvas.width * 0.3;
+                this.startY = Math.random() * canvas.height * 0.2;
+                this.targetX = this.startX + Math.random() * 400 + 300;
+                this.targetY = this.startY + Math.random() * 300 + 200;
+                this.progress = 0;
+                this.speed = Math.random() * 0.006 + 0.002; // slow elegant trails
+                this.width = Math.random() * 1.5 + 0.8;
+                this.alpha = Math.random() * 0.3 + 0.1;
+            }
+            update() {
+                this.progress += this.speed;
+                if (this.progress >= 1) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha * (1 - this.progress);
+                ctx.strokeStyle = '#d4af37';
+                ctx.lineWidth = this.width;
+                ctx.shadowColor = '#e65c00';
+                ctx.shadowBlur = 10;
+                ctx.beginPath();
+
+                // Draw a nice bezier curve trail representing trade path
+                const currentX = this.startX + (this.targetX - this.startX) * this.progress;
+                const currentY = this.startY + (this.targetY - this.startY) * this.progress;
+                const prevX = this.startX + (this.targetX - this.startX) * Math.max(0, this.progress - 0.15);
+                const prevY = this.startY + (this.targetY - this.startY) * Math.max(0, this.progress - 0.15);
+
+                ctx.moveTo(prevX, prevY);
+                ctx.lineTo(currentX, currentY);
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+
+        // Spawn particles
+        const particleCount = 75;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new AmbientParticle());
+        }
+
+        // Spawn rocket trails
+        const trailCount = 3;
+        for (let i = 0; i < trailCount; i++) {
+            lightTrails.push(new RocketLightTrail());
+        }
+
+        // Animation Loop
+        function animateAmbientBazaar() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Update & Render Spice Particles
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // Update & Render Rocket/Trade Trails
+            lightTrails.forEach(trail => {
+                trail.update();
+                trail.draw();
+            });
+
+            requestAnimationFrame(animateAmbientBazaar);
+        }
+        animateAmbientBazaar();
+
+
+        // --- 12. Royal Custom Cursor Physics Engine ---
+        function initRoyalCursor() {
+            const cursorDot = document.getElementById('royal-cursor');
+            const cursorRing = document.getElementById('royal-cursor-ring');
+            const trailCanvas = document.getElementById('cursor-trail-canvas');
+            const trailCtx = trailCanvas.getContext('2d');
+
+            let mouseX = -100;
+            let mouseY = -100;
+            let dotX = -100;
+            let dotY = -100;
+            let ringX = -100;
+            let ringY = -100;
+
+            const ringSpring = 0.14; // smooth spring lag
+            const dotSpring = 0.38;  // snappier dot follow
+
+            let trailPoints = [];
+            const maxTrailPoints = 14;
+
+            let spiceParticles = [];
+
+            // Tracking user movement
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                trailPoints.push({ x: mouseX, y: mouseY, age: 0 });
+            });
+
+            // Spice click particle class
+            class ClickSpice {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    const angle = Math.random() * Math.PI * 2;
+                    const velocity = Math.random() * 2.8 + 1.2;
+                    this.vx = Math.cos(angle) * velocity;
+                    this.vy = Math.sin(angle) * velocity;
+                    this.size = Math.random() * 2.5 + 0.8;
+                    this.maxLife = Math.random() * 25 + 15;
+                    this.life = this.maxLife;
+
+                    const spiceTints = ['#d4af37', '#e5c158', '#e65c00', '#993d00', '#dfd5c6'];
+                    this.color = spiceTints[Math.floor(Math.random() * spiceTints.length)];
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vy += 0.06; // gravity pull downwards
+                    this.vx *= 0.95; // subtle friction deceleration
+                    this.life--;
+                }
+                draw(cCtx) {
+                    cCtx.save();
+                    cCtx.globalAlpha = this.life / this.maxLife;
+                    cCtx.fillStyle = this.color;
+                    cCtx.beginPath();
+                    cCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    cCtx.fill();
+                    cCtx.restore();
+                }
+            }
+
+            // Click trigger burst
+            window.addEventListener('click', (e) => {
+                for (let i = 0; i < 18; i++) {
+                    spiceParticles.push(new ClickSpice(e.clientX, e.clientY));
+                }
+            });
+
+            // Section Awareness triggers on Outer Ring
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetId = entry.target.id;
+                        // Clean previous themes
+                        cursorRing.classList.remove(
+                            'cursor-theme-hero', 'cursor-theme-products',
+                            'cursor-theme-heritage', 'cursor-theme-atmosphere',
+                            'cursor-theme-support'
+                        );
+
+                        if (targetId === 'hero') cursorRing.classList.add('cursor-theme-hero');
+                        else if (targetId === 'products') cursorRing.classList.add('cursor-theme-products');
+                        else if (targetId === 'heritage') cursorRing.classList.add('cursor-theme-heritage');
+                        else if (targetId === 'atmosphere') cursorRing.classList.add('cursor-theme-atmosphere');
+                        else if (targetId === 'support') cursorRing.classList.add('cursor-theme-support');
+                    }
+                });
+            }, { threshold: 0.18 });
+
+            // Attach observer to major interactive blocks
+            document.querySelectorAll('section').forEach(sec => sectionObserver.observe(sec));
+            const heroSec = document.querySelector('section:first-of-type');
+            if (heroSec) {
+                heroSec.id = 'hero';
+                sectionObserver.observe(heroSec);
+            }
+
+            // Stable hover-only cursor state.
+            // The previous magnetic implementation translated hovered elements toward the cursor on mousemove,
+            // which caused jumpy/broken movement around tight layouts. This keeps the cursor-ring hover style
+            // without moving page elements.
+            function bindStableCursorHovers() {
+                const hoverTargets = document.querySelectorAll(
+                    'a, button, select, input, textarea, [role="button"], .bazaar-stall, .sensory-btn, [data-theme-button]'
+                );
+
+                hoverTargets.forEach(target => {
+                    target.addEventListener('mouseenter', () => {
+                        cursorRing.classList.add('cursor-btn-hover');
+                    });
+
+                    target.addEventListener('mouseleave', () => {
+                        cursorRing.classList.remove('cursor-btn-hover');
+                    });
+                });
+            }
+            bindStableCursorHovers();
+
+            // Set Reader/Lens underline mode on deep text headers
+            function bindTextSelectionHovers() {
+                const textElements = document.querySelectorAll('h1, h2, h3, .split-char, blockquote p, footer span.font-cinzel');
+                textElements.forEach(el => {
+                    // Check to avoid overlaps with button triggers
+                    if (el.closest('a') || el.closest('button') || el.closest('.sensory-btn')) return;
+
+                    el.addEventListener('mouseenter', () => {
+                        cursorRing.classList.add('cursor-text-hover');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        cursorRing.classList.remove('cursor-text-hover');
+                    });
+                });
+            }
+            bindTextSelectionHovers();
+
+            // Core tick updates running with optimal sub-pixel transforms
+            function renderCursorLoop() {
+                // Spring physics follow coordinates
+                dotX += (mouseX - dotX) * dotSpring;
+                dotY += (mouseY - dotY) * dotSpring;
+                ringX += (mouseX - ringX) * ringSpring;
+                ringY += (mouseY - ringY) * ringSpring;
+
+                cursorDot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0)`;
+                cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+
+                // Render golden thread trails
+                trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+
+                if (trailPoints.length > 1) {
+                    trailCtx.beginPath();
+                    trailCtx.moveTo(trailPoints[0].x, trailPoints[0].y);
+
+                    for (let i = 1; i < trailPoints.length; i++) {
+                        const xc = (trailPoints[i].x + trailPoints[i - 1].x) / 2;
+                        const yc = (trailPoints[i].y + trailPoints[i - 1].y) / 2;
+                        trailCtx.quadraticCurveTo(trailPoints[i - 1].x, trailPoints[i - 1].y, xc, yc);
+                    }
+
+                    // Theme aware stroke paths
+                    let threadColor = '#d4af37';
+                    if (activeSense === 'scent') threadColor = '#a8a29e';
+                    else if (activeSense === 'touch') threadColor = '#10b981';
+                    else if (activeSense === 'taste') threadColor = '#ea580c';
+
+                    trailCtx.strokeStyle = threadColor;
+                    trailCtx.lineWidth = 1.4;
+                    trailCtx.lineCap = 'round';
+                    trailCtx.lineJoin = 'round';
+                    trailCtx.shadowColor = '#e65c00';
+                    trailCtx.shadowBlur = 4;
+                    trailCtx.stroke();
+                }
+
+                // Update ages of trail coordinates
+                trailPoints.forEach(p => p.age++);
+                trailPoints = trailPoints.filter(p => p.age < maxTrailPoints);
+
+                // Update & Render active clicks
+                spiceParticles.forEach((p, index) => {
+                    p.update();
+                    p.draw(trailCtx);
+                    if (p.life <= 0) {
+                        spiceParticles.splice(index, 1);
+                    }
+                });
+
+                requestAnimationFrame(renderCursorLoop);
+            }
+            renderCursorLoop();
+        }
+
+        // --- 13. Product card stability setup ---
+        function initProductCardTilt() {
+            // Card tilt/follow was removed because rotating and translating cards on mousemove
+            // caused jumpy hover zones. Cards now keep a fixed position with the CSS hover glow/sheen only.
+            document.querySelectorAll('.bazaar-stall').forEach(stall => {
+                stall.style.transform = '';
+                const inner = stall.querySelector('.stall-inner');
+                if (inner) inner.style.transform = '';
+            });
+        }
+
+        // Accessibility checks before running custom animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const isTouchEnabled = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+            if (prefersReducedMotion || isTouchEnabled || window.innerWidth < 1280) {
+                document.documentElement.classList.add('use-default-cursor');
+            } else {
+                initRoyalCursor();
+                initProductCardTilt();
+            }
+        });
+
+    </script>
+</body>
+
+</html>
